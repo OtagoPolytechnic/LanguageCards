@@ -9,3 +9,8 @@ def word_json(request):
     words = WordRecord.objects.all()
     data = serializers.serialize("json", words)
     return HttpResponse(data, content_type='application/json')
+	
+def word_json_update(request):
+    words = WordRecord.objects.all()
+    data = serializers.serialize("json", words)
+    return HttpResponse(data, content_type='application/json')

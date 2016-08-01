@@ -20,4 +20,5 @@ from wordproject import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^json/', views.word_json),
+	url(r'^update/', views.word_json_update),
 ]
