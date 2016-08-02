@@ -12,8 +12,8 @@ def word_json(request):
     data = serializers.serialize("json", words)
     return HttpResponse(data, content_type='application/json')
 	
-def word_json_update(request):
-    first_date = datetime.date(2016, 5, 11)
+def word_json_update(request, year, month, day):
+    first_date = datetime.date(int(year), int(month), int(day))
     last_date = datetime.date(2016, 8, 20)
     words = WordRecord.objects.filter(dateUpdated__range=(first_date, last_date))
     data = serializers.serialize("json", words)
