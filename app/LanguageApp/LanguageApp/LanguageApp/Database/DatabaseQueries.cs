@@ -10,5 +10,28 @@ namespace LanguageApp.Database
     {
         //All Database queries.
 
+        public DatabaseQueries()
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>DateTime</returns>
+        public DateTime GetLatestUpdatedDate()
+        {
+            throw new NotImplementedException();
+        }
+                  
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public DateTime GetLatestCreatedDate()
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

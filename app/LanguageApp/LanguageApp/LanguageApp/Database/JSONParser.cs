@@ -10,7 +10,20 @@ namespace LanguageApp.Database
     {
         //Convert JSON data retrived from Async // API call into the sqlite database
 
-        //Date converting method. Might need to be another class.
+        public JsonParser()
+        {
+
+        }
+
+        /// <JsonDateCoverter>
+        /// Covert incomming json date sting into DateTime type and return that value.
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns>DateTime</returns>
+        public DateTime JsonDateCoverter(String date)
+        {
+            throw new NotImplementedException();
+        }
 
     }
 }

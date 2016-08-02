@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace LanguageApp.Database
 {
+
     public class ApiQueryBuilder
     {
 
