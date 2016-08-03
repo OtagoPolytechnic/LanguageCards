@@ -40,6 +40,7 @@
     <Compile Include="Database\AsyncCall.cs" />
     <Compile Include="Database\DatabaseManager.cs" />
     <Compile Include="Database\DatabaseQueries.cs" />
+    <Compile Include="Database\ISQLiteConnection.cs" />
     <Compile Include="Database\JsonParser.cs" />
     <Compile Include="Database\Models\WordPair.cs" />
     <Compile Include="Database\Models\WordRecord.cs" />
