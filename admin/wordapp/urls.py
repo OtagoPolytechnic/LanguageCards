@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^json/', views.word_json),
 	url(r'^update/all', views.word_json_update_all),
 	url(r'^update/(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d+)/$', views.word_json_update),
+	url(r'^update/unpublished', views.word_json_unpublished_all),
 ]
