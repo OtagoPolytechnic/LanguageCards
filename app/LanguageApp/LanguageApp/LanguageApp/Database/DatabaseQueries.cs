@@ -19,6 +19,11 @@ namespace LanguageApp.Database
             this.connection = connection;
         }
 
+        public void CallApi()
+        {
+
+        }
+
         /// <summary>
         ///     Queries the database for the last time the database was updated
         /// </summary>
