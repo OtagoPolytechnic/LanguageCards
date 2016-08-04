@@ -15,15 +15,7 @@ namespace LanguageApp.Database
 
         }
 
-        /// <JsonDateCoverter>
-        /// Covert incomming json date sting into DateTime type and return that value.
-        /// </summary>
-        /// <param name="date"></param>
-        /// <returns>DateTime</returns>
-        public DateTime JsonDateCoverter(String date)
-        {
-            throw new NotImplementedException();
-        }
+        
 
     }
 }
