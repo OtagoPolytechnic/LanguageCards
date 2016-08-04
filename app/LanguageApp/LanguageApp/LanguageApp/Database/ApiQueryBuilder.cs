@@ -12,11 +12,18 @@ namespace LanguageApp.Database
 
         //Create the api queries for the async call.
 
+        private string apiAddress = "http://jacksct1.pythonanywhere.com/";
+        private string apiUpdateAll = "update/all";
+
         public ApiQueryBuilder()
         {
 
         }
-                       
+           
+        public string GetUpdateAllString()
+        {
+            return apiAddress + apiUpdateAll;
+        }            
             
         //  YYYY-MM-DDTHH:MM:SS ///SQLite date format
 

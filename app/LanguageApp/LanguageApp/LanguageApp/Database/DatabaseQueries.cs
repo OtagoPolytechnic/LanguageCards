@@ -15,6 +15,11 @@ namespace LanguageApp.Database
 
         }
 
+        public void CallApi()
+        {
+
+        }
+
         /// <summary>
         /// 
         /// </summary>

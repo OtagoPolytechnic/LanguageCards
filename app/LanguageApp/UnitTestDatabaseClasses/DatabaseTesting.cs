@@ -21,5 +21,18 @@ namespace UnitTestDatabaseClasses
 
             Assert.AreEqual(expected, actual);
         }
+
+
+        [TestMethod]
+        public void JSONStringReturnsFromApi()
+        {
+            DatabaseManager dbm = new DatabaseManager();
+            dbm.CallApi(); 
+
+            string expected = "";
+            string actual = dbm.GetJsonString();
+
+            Assert.AreEqual(expected, actual);            
+        }
     }
 }

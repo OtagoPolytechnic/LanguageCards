@@ -18,20 +18,23 @@ namespace LanguageApp.Database
 
         }
 
-        public HttpWebResponse CallApi(String apiString, String accountKey)
-        {                                  
-            HttpWebResponse webResponse = null;  
+
+        /// <summary>
+        /// Need to research Async HTTPWEBRESONSE STUFF // KEEPS THROWING ERRORS;
+        /// </summary>
+        /// <param name="apiString"></param>
+        /// <returns></returns>
+        public HttpWebResponse CallApi(String apiString)
+        {
+           
             try
             {
                 Uri uri = new Uri(apiString);
-                HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(uri);
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);  
 
-                //Credentials currently not used.
-                //accountKey will be the incomming password / user name. If required by the api desgin.
-                NetworkCredential credentials = new NetworkCredential();
-                webRequest.Credentials = credentials;       
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
-                return webResponse; 
+                return response;
             }
             catch (WebException e)
             {

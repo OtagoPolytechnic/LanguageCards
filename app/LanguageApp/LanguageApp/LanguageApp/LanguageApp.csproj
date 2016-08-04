@@ -41,6 +41,7 @@
     <Compile Include="Database\DatabaseManager.cs" />
     <Compile Include="Database\DatabaseQueries.cs" />
     <Compile Include="Database\JsonParser.cs" />
+    <Compile Include="Database\ModelsBuilder.cs" />
     <Compile Include="Database\Models\WordPair.cs" />
     <Compile Include="Database\Models\WordRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
