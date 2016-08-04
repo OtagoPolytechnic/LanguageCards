@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace LanguageApp.Database.Models
 {
-    [Table("Modifications")]
-    public class Modifications
+    [Table("Modification")]
+    public class Modification
     {
-
+        [PrimaryKey]
+        public string tableName { get; set; }
+        public string lastUpdated { get; set; }
     }
 }

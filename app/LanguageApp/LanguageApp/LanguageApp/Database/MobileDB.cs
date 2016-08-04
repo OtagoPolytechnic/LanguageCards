@@ -30,12 +30,38 @@ namespace LanguageApp.Database
         /// <param name="con">SQLiteAsyncConnection</param>
         public void CreateTablesAsync(SQLiteAsyncConnection con)
         {
-            con.CreateTablesAsync<Models.WordRecord, Models.WordPair>();
+            con.CreateTablesAsync<WordRecord, WordPair>();
         }
 
-        public Tuple<DateTime, DateTime> GetDates()
+        /// <summary>
+        ///     Returns a string of the last time the database was updated
+        /// </summary>
+        /// <returns></returns>
+        public string LastUpdatedDate()
         {
+            DatabaseQueries dbq = new DatabaseQueries(dbConnection);
+            string date = dbq.LatestUpdate();                
+            return date;
+        }
 
+        /// <summary>
+        ///     Receives everything to insert, update, & delete then writes to the database
+        /// </summary>
+        public void WriteToDatabase(List<IModel> insertList, List<IModel> updateList, List<IModel> deleteList)
+        {
+            DatabaseQueries dbq = new DatabaseQueries(dbConnection);
+            foreach (var model in insertList)
+            {
+                dbq.InsertRecord(model);
+            }
+            foreach (var model in updateList)
+            {
+                dbq.UpdateRecord(model);
+            }
+            foreach (var model in deleteList)
+            {
+                dbq.DeleteRecord(model);
+            }
         }
 
         
