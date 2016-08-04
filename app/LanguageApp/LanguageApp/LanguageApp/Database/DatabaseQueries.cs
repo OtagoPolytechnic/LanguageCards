@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite.Net.Async;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +9,13 @@ namespace LanguageApp.Database
 {
     public class DatabaseQueries
     {
+        private SQLiteAsyncConnection connection;
+
         //All Database queries.
 
-        public DatabaseQueries()
+        public DatabaseQueries(SQLiteAsyncConnection connection)
         {
-
+            this.connection = connection;
         }
 
         /// <summary>
@@ -21,17 +24,10 @@ namespace LanguageApp.Database
         /// <returns>DateTime</returns>
         public DateTime GetLatestUpdatedDate()
         {
+            
             throw new NotImplementedException();
         }
-                  
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public DateTime GetLatestCreatedDate()
-        {
-            throw new NotImplementedException();
-        }
+        
 
     }
 }

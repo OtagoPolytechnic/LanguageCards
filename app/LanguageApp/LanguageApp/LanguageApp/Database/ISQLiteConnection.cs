@@ -1,4 +1,4 @@
-﻿using SQLite.Net;
+﻿using SQLite.Net.Async;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,6 @@ namespace LanguageApp.Database
 {
     public interface ISQLiteConnection
     {
-        SQLiteConnection CreateConnection();
+        SQLiteAsyncConnection CreateConnection();
     }
 }
