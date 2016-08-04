@@ -8,6 +8,6 @@ namespace LanguageApp.Database.Models
 {
     public interface IModel
     {
-        string GetTableName();
+        
     }
 }

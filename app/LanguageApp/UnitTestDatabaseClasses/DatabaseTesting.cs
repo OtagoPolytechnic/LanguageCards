@@ -21,5 +21,6 @@ namespace UnitTestDatabaseClasses
 
             Assert.AreEqual(expected, actual);
         }
+
     }
 }

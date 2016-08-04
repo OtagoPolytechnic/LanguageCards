@@ -9,7 +9,7 @@ using System.ComponentModel;
 namespace LanguageApp.Database.Models
 {
     [Table("WordRecord")]
-    public class WordRecord : IModel
+    public class WordRecord : Model
     {
         [PrimaryKey, AutoIncrement]
         public int id { get; set; }
@@ -20,10 +20,6 @@ namespace LanguageApp.Database.Models
         public DateTime dateCreated { get; set; }
         public bool publish { get; set; }
 
-        public string GetTableName()
-        {
-            
-            throw new NotImplementedException();
-        }
+        
     }
 }

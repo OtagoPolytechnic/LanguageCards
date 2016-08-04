@@ -20,8 +20,17 @@ namespace LanguageApp.Database
         /// </summary>
         public MobileDB()
         {
-            dbConnection = DependencyService.Get<ISQLiteConnection>().CreateConnection();
+            dbConnection = GetConnection();
             CreateTablesAsync(dbConnection);
+        }
+
+        /// <summary>
+        ///     Gets the async connection for the database
+        /// </summary>
+        /// <returns>SQLiteAsyncConnection</returns>
+        public SQLiteAsyncConnection GetConnection()
+        {
+            return DependencyService.Get<ISQLiteConnection>().CreateConnection();
         }
 
         /// <summary>
@@ -47,7 +56,7 @@ namespace LanguageApp.Database
         /// <summary>
         ///     Receives everything to insert, update, & delete then writes to the database
         /// </summary>
-        public void WriteToDatabase(List<IModel> insertList, List<IModel> updateList, List<IModel> deleteList)
+        public void WriteToDatabase(List<Model> insertList, List<Model> updateList, List<Model> deleteList)
         {
             DatabaseQueries dbq = new DatabaseQueries(dbConnection);
             foreach (var model in insertList)
