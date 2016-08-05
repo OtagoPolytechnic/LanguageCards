@@ -20,7 +20,7 @@ namespace LanguageApp.Database
         }
 
         //Tempory test method
-        public string GetJsonString(HttpWebResponse webResponse)
+        public string GetJsonString(WebResponse webResponse)
         {
             return jsonString = new StreamReader(webResponse.GetResponseStream()).ReadToEnd();
         }

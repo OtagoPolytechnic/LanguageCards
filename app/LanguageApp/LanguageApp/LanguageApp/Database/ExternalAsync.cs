@@ -24,17 +24,21 @@ namespace LanguageApp.Database
         /// </summary>
         /// <param name="apiString"></param>
         /// <returns></returns>
-        public HttpWebResponse CallApi(String apiString)
+        public async Task<WebResponse> CallApi(String apiString)
         {
            
             try
             {
+                WebResponse response;
                 Uri uri = new Uri(apiString);
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);  
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
 
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-                return response;
+                using (WebResponse webResponse = await request.GetResponseAsync()) 
+                {
+                    response = webResponse;
+                    return response;
+                } 
+                
             }
             catch (WebException e)
             {

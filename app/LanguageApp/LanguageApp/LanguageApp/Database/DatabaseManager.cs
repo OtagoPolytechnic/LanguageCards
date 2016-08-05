@@ -18,7 +18,7 @@ namespace LanguageApp.Database
         public string jsonString;
         public string accountKey; //Will be needed eventually to access the api.    
         public string apiAddress;               
-        public HttpWebResponse webResponse; //Response returned from te External Async class.
+        public WebResponse webResponse; //Response returned from te External Async class.
 
 
         public DatabaseManager()
@@ -29,11 +29,11 @@ namespace LanguageApp.Database
         }
 
 
-        public void CallApi()
+        public async Task CallApi()
         {
             apiAddress = apiQueryBuilder.GetUpdateAllString();
-            webResponse = externalAsync.CallApi(apiAddress);
-            jsonString = jsonParser.GetJsonString(webResponse);
+            webResponse = await externalAsync.CallApi(apiAddress);  //I think becuase this is async it skips straight to the json string before it's ready.
+            //jsonString = jsonParser.GetJsonString(webResponse);
         }
 
         public string GetJsonString()
