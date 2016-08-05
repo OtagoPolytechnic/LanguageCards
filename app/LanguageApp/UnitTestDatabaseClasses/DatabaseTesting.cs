@@ -9,30 +9,18 @@ namespace UnitTestDatabaseClasses
     public class DatabaseTesting
     {
         [TestMethod]
-        public void SQLiteStringToDateTimeConverter()
+        public void JsonParserStringToDateTimeConverter()
         {
-            ApiQueryBuilder apiQueryBuilder = new ApiQueryBuilder();
+            JsonParser jsonParser = new JsonParser();
             
-            String date = "2013-01-16T08:16:59.84";
+            String jsonDate = "2013-01-16T08:16:59.844Z";
 
             DateTime expected = new DateTime(2013, 1, 16, 8, 16, 59);
 
-            DateTime actual = apiQueryBuilder.StringDateCoverter(date);
+            DateTime actual = jsonParser.JsonDateCoverter(jsonDate);
 
             Assert.AreEqual(expected, actual);
         }
 
-
-        [TestMethod]
-        public void JSONStringReturnsFromApi()
-        {
-            DatabaseManager dbm = new DatabaseManager();
-            dbm.CallApi(); 
-
-            string expected = "";
-            string actual = dbm.GetJsonString();
-
-            Assert.AreEqual(expected, actual);            
-        }
     }
 }
