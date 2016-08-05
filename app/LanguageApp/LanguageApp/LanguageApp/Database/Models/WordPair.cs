@@ -10,7 +10,7 @@ using SQLiteNetExtensions.Attributes;
 namespace LanguageApp.Database.Models
 {
     [Table("WordPair")]
-    public class WordPair
+    public class WordPair : Model
     {
         [PrimaryKey, AutoIncrement]
         public int id { get; set; }
@@ -20,5 +20,6 @@ namespace LanguageApp.Database.Models
 
         [ForeignKey(typeof(WordRecord))]
         public int translation { get; set; }
+
     }
 }

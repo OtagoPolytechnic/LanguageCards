@@ -25,6 +25,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,11 +39,15 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Database\ApiQueryBuilder.cs" />
-    <Compile Include="Database\ExternalAsync.cs" />
+    <Compile Include="Database\AsyncCall.cs" />
     <Compile Include="Database\DatabaseManager.cs" />
     <Compile Include="Database\DatabaseQueries.cs" />
+    <Compile Include="Database\ISQLiteConnection.cs" />
     <Compile Include="Database\JsonParser.cs" />
-    <Compile Include="Database\ModelsBuilder.cs" />
+    <Compile Include="Database\MobileDB.cs" />
+    <Compile Include="Database\Models\IModel.cs" />
+    <Compile Include="Database\Models\Model.cs" />
+    <Compile Include="Database\Models\Modification.cs" />
     <Compile Include="Database\Models\WordPair.cs" />
     <Compile Include="Database\Models\WordRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -50,9 +56,6 @@
     <Folder Include="Classes\" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Mono.Android">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\MonoAndroid\v6.0\Mono.Android.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>

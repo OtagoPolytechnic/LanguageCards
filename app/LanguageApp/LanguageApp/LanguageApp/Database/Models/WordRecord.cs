@@ -9,7 +9,7 @@ using System.ComponentModel;
 namespace LanguageApp.Database.Models
 {
     [Table("WordRecord")]
-    public class WordRecord
+    public class WordRecord : Model
     {
         [PrimaryKey, AutoIncrement]
         public int id { get; set; }
@@ -18,7 +18,8 @@ namespace LanguageApp.Database.Models
         public string description { get; set; }
         public DateTime dateUpdate { get; set; }
         public DateTime dateCreated { get; set; }
-        public bool publish { get; set; }      
+        public bool publish { get; set; }
 
+        
     }
 }
