@@ -28,4 +28,5 @@ def word_json_unpublished_all(request):
 	words = WordRecord.objects.filter(published=False)
 	data = serializers.serialize("json", words)
 	return HttpResponse(data, content_type='application/json')
-
+	
+	
