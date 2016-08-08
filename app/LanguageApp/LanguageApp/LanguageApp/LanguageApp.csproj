@@ -39,9 +39,9 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Database\ApiQueryBuilder.cs" />
-    <Compile Include="Database\AsyncCall.cs" />
     <Compile Include="Database\DatabaseManager.cs" />
     <Compile Include="Database\DatabaseQueries.cs" />
+    <Compile Include="Database\ExternalAsync.cs" />
     <Compile Include="Database\ISQLiteConnection.cs" />
     <Compile Include="Database\JsonParser.cs" />
     <Compile Include="Database\MobileDB.cs" />

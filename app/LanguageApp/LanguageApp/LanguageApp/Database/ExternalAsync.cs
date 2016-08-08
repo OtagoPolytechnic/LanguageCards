@@ -29,16 +29,16 @@ namespace LanguageApp.Database
            
             try
             {
-                WebResponse response;
+              
                 Uri uri = new Uri(apiString);
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
 
-                using (WebResponse webResponse = await request.GetResponseAsync()) 
-                {
-                    response = webResponse;
-                    return response;
-                } 
-                
+                Task<WebResponse> webResponseTask = request.GetResponseAsync(); //Seems to be doing the correct thing and getting results back.
+
+                WebResponse webResponse = await webResponseTask;
+               
+                return webResponse; 
+
             }
             catch (WebException e)
             {
