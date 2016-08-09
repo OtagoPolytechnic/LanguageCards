@@ -33,10 +33,10 @@ namespace LanguageApp.Database
         {
             apiAddress = apiQueryBuilder.GetUpdateAllString();
           
-            Task<WebResponse> webResponseTask = externalAsync.CallApi(apiAddress);  //I think becuase this is async it skips straight to the json string before it's ready.
+            webResponse = await externalAsync.CallApi(apiAddress);  //I think becuase this is async it skips straight to the json string before it's ready.
             //Look into async waiting for webTask then calling json task
             //await webResponseTask.ContinueWith()
-            Task<string> jsonStringTask = jsonParser.GetJsonString(webResponse);
+            //Task<string> jsonStringTask = jsonParser.GetJsonString(webResponse);
         }
 
         public string GetJsonString()
