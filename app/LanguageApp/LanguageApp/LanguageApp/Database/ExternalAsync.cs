@@ -25,7 +25,10 @@ namespace LanguageApp.Database
         /// <param name="apiString"></param>
         /// <returns></returns>
         public async Task<string> CallApi(String apiString)
-        {                
+        {
+
+            string jsonString;
+
             try
             {    
                 Uri uri = new Uri(apiString);
@@ -34,7 +37,7 @@ namespace LanguageApp.Database
                 Task<WebResponse> responseTask = request.GetResponseAsync();
                 using (WebResponse response = await responseTask)
                 {
-                    string jsonString = await ReadWebResponse(response);
+                    jsonString = await new StreamReader(response.GetResponseStream()).ReadToEndAsync();
                     return jsonString; 
                 }
 
@@ -49,14 +52,14 @@ namespace LanguageApp.Database
         }
 
 
-        public async Task<string> ReadWebResponse(WebResponse response)
-        {
-            string jsonString;
+        //public async Task<string> ReadWebResponse(WebResponse response)
+        //{
+            
 
-            jsonString = await new StreamReader(response.GetResponseStream()).ReadToEndAsync();
+            
 
-            return jsonString;
-        }
+        //    return jsonString;
+        //}
 
     }
 }

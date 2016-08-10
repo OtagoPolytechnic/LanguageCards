@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using LanguageApp.Database;
 using Xamarin.Forms;
+using System.Diagnostics;
 
 namespace LanguageApp
 {
@@ -11,26 +12,42 @@ namespace LanguageApp
     {
         public AppAsyncTestingPage()
         {
+            string jsonString = "Ahhhh this didn't change";
 
-
-            Button TestButton = new Button
+            Button button = new Button
             {
-                Text = String.Format("Button")
+                Text = String.Format("Get Json")
             };
 
 
-            TestButton.Clicked += async (sender, e) =>
+            Label label = new Label
             {
-                string jsonString;
+                Text = jsonString,
+
+                FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
+                VerticalOptions = LayoutOptions.CenterAndExpand
+            };
+
+            button.Clicked += async (sender, e) =>
+            {
+                
+                Label lb = new Label { Text = jsonString };
 
                 DatabaseManager dbm = new DatabaseManager();
                 jsonString = await dbm.CallApi();
 
-                TestButton.Text = String.Format(jsonString);
+                label.Text = jsonString;
 
             };
 
-            this.Content = TestButton;
+            this.Content = new StackLayout
+            {
+                Children =
+                {                        
+                    button,
+                    label
+                }
+            };
 
         }
     }
