@@ -25,8 +25,7 @@ namespace LanguageApp.Database
         /// <param name="apiString"></param>
         /// <returns></returns>
         public async Task<string> CallApi(String apiString)
-        {
-
+        {                                  
             string jsonString;
 
             try
@@ -37,29 +36,26 @@ namespace LanguageApp.Database
                 Task<WebResponse> responseTask = request.GetResponseAsync();
                 using (WebResponse response = await responseTask)
                 {
-                    jsonString = await new StreamReader(response.GetResponseStream()).ReadToEndAsync();
+                    jsonString = await ReadWebResponse(response);
                     return jsonString; 
                 }
 
             }
-            catch (Exception e)
+            catch (WebException we)
             {
-                Debug.WriteLine("Web Exception:" + e.ToString());
-                string ahh = "This shit is fucked";
-                return ahh;
+                //Not sure if Debug.WriteLine works as replacement for Console.WL.
+                Debug.WriteLine("Web Exception:" + we.ToString()); 
                 throw;   
             }
         }
 
 
-        //public async Task<string> ReadWebResponse(WebResponse response)
-        //{
-            
-
-            
-
-        //    return jsonString;
-        //}
+        public async Task<string> ReadWebResponse(WebResponse response)
+        {  
+            string jsonString = await new StreamReader(response.GetResponseStream()).ReadToEndAsync();
+           
+            return jsonString;
+        }
 
     }
 }

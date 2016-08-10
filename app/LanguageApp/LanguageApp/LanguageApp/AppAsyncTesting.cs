@@ -24,20 +24,19 @@ namespace LanguageApp
             {
                 Text = jsonString,
 
-                FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
+                FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
                 VerticalOptions = LayoutOptions.CenterAndExpand
             };
 
             button.Clicked += async (sender, e) =>
-            {
-                
-                Label lb = new Label { Text = jsonString };
-
+            {    
+                Label lb = new Label { Text = jsonString }; 
                 DatabaseManager dbm = new DatabaseManager();
+                label.Text = "Button Pressed...Waiting";
+
                 jsonString = await dbm.CallApi();
 
-                label.Text = jsonString;
-
+                label.Text = jsonString;     
             };
 
             this.Content = new StackLayout
