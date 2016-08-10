@@ -31,10 +31,9 @@ namespace LanguageApp.Database
             try
             {    
                 Uri uri = new Uri(apiString);
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-
-                Task<WebResponse> responseTask = request.GetResponseAsync();
-                using (WebResponse response = await responseTask)
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);  
+               
+                using (WebResponse response = await request.GetResponseAsync())
                 {
                     jsonString = await ReadWebResponse(response);
                     return jsonString; 
