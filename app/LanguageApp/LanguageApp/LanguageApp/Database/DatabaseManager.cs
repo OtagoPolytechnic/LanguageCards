@@ -29,11 +29,14 @@ namespace LanguageApp.Database
         }
 
 
-        public async void CallApi()
+        public async Task<string> CallApi()
         {
             apiAddress = apiQueryBuilder.GetUpdateAllString();
-          
-            webResponse = await externalAsync.CallApi(apiAddress);  //I think becuase this is async it skips straight to the json string before it's ready.
+
+            Task<string> jsonTask = externalAsync.CallApi(apiAddress);
+            return jsonString = await jsonTask;
+            
+            //I think becuase this is async it skips straight to the json string before it's ready.
             //Look into async waiting for webTask then calling json task
             //await webResponseTask.ContinueWith()
             //Task<string> jsonStringTask = jsonParser.GetJsonString(webResponse);

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -16,36 +17,45 @@ namespace LanguageApp.Database
         public ExternalAsync()
         {
 
-        }
-
+        }     
 
         /// <summary>
         /// Need to research Async HTTPWEBRESONSE STUFF // KEEPS THROWING ERRORS;
         /// </summary>
         /// <param name="apiString"></param>
         /// <returns></returns>
-        public async Task<WebResponse> CallApi(String apiString)
-        {
-           
+        public async Task<string> CallApi(String apiString)
+        {                
             try
             {    
                 Uri uri = new Uri(apiString);
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
 
-                using (WebResponse webResponse = await request.GetResponseAsync())
+                Task<WebResponse> responseTask = request.GetResponseAsync();
+                using (WebResponse response = await responseTask)
                 {
-
-                    return webResponse;
+                    string jsonString = await ReadWebResponse(response);
+                    return jsonString; 
                 }
 
-                     
-
             }
-            catch (WebException e)
+            catch (Exception e)
             {
                 Debug.WriteLine("Web Exception:" + e.ToString());
+                string ahh = "This shit is fucked";
+                return ahh;
                 throw;   
             }
+        }
+
+
+        public async Task<string> ReadWebResponse(WebResponse response)
+        {
+            string jsonString;
+
+            jsonString = await new StreamReader(response.GetResponseStream()).ReadToEndAsync();
+
+            return jsonString;
         }
 
     }
