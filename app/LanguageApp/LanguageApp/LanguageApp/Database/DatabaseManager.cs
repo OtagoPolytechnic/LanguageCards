@@ -12,7 +12,7 @@ namespace LanguageApp.Database
         //Handle connections and commuication between each class. 
 
         ApiQueryBuilder apiQueryBuilder;
-        ExternalAsync externalAsync;
+        ExternalApi externalAsync;
         JsonParser jsonParser;
 
         public string jsonString;
@@ -24,7 +24,7 @@ namespace LanguageApp.Database
         public DatabaseManager()
         {
             apiQueryBuilder = new ApiQueryBuilder();
-            externalAsync = new ExternalAsync();
+            externalAsync = new ExternalApi();
             jsonParser = new JsonParser();
         }
 
@@ -33,7 +33,7 @@ namespace LanguageApp.Database
         {
             apiAddress = apiQueryBuilder.GetUpdateAllString();
 
-            Task<string> jsonTask = externalAsync.CallApi(apiAddress);
+            Task<string> jsonTask = externalAsync.GetJsonData(apiAddress);
             return jsonString = await jsonTask;
         }
 

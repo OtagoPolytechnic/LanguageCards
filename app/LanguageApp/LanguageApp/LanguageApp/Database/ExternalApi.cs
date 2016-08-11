@@ -10,21 +10,21 @@ using System.Threading.Tasks;
 
 namespace LanguageApp.Database
 {
-    public class ExternalAsync
+    public class ExternalApi
     {
         //Request data from the backend via httprequest / api call.
 
-        public ExternalAsync()
+        public ExternalApi()
         {
 
         }     
 
         /// <summary>
-        /// Need to research Async HTTPWEBRESONSE STUFF // KEEPS THROWING ERRORS;
+        /// 
         /// </summary>
         /// <param name="apiString"></param>
         /// <returns></returns>
-        public async Task<string> CallApi(String apiString)
+        public async Task<string> GetJsonData(String apiString)
         {                                  
             string jsonString;
 
