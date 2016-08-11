@@ -17,17 +17,16 @@ namespace LanguageApp.Database
         public ExternalApi()
         {
 
-        }     
+        }
 
         /// <summary>
-        /// 
+        /// Establishes a connection with the external api
+        /// Gets a web response and then coverts that web response into a string in json format.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
         /// </summary>
         /// <param name="apiString"></param>
         /// <returns></returns>
         public async Task<string> GetJsonData(String apiString)
         {                                  
-            string jsonString;
-
             try
             {    
                 Uri uri = new Uri(apiString);
@@ -35,10 +34,9 @@ namespace LanguageApp.Database
                
                 using (WebResponse response = await request.GetResponseAsync())
                 {
-                    jsonString = await ReadWebResponse(response);
+                    string jsonString = await ReadWebResponse(response);
                     return jsonString; 
-                }
-
+                }   
             }
             catch (WebException we)
             {
@@ -51,9 +49,7 @@ namespace LanguageApp.Database
 
         public async Task<string> ReadWebResponse(WebResponse response)
         {  
-            string jsonString = await new StreamReader(response.GetResponseStream()).ReadToEndAsync();
-           
-            return jsonString;
+           return await new StreamReader(response.GetResponseStream()).ReadToEndAsync();             
         }
 
     }

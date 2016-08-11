@@ -8,6 +8,11 @@ using System.Diagnostics;
 
 namespace LanguageApp
 {
+
+    /// <summary>
+    /// This screen is to test the async connection to the external api
+    /// It GETS and displays the database data in json format on the app screen.
+    /// </summary>
     public class AppAsyncTestingPage : ContentPage
     {
         public AppAsyncTestingPage()

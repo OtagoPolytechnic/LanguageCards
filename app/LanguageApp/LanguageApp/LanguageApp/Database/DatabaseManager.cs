@@ -13,9 +13,8 @@ namespace LanguageApp.Database
 
         ApiQueryBuilder apiQueryBuilder;
         ExternalApi externalAsync;
-        JsonParser jsonParser;
-
-        public string jsonString;
+        JsonParser jsonParser; 
+      
         public string accountKey; //Will be needed eventually to access the api.    
         public string apiAddress;               
         public WebResponse webResponse; //Response returned from te External Async class.
@@ -31,16 +30,12 @@ namespace LanguageApp.Database
 
         public async Task<string> CallApi()
         {
-            apiAddress = apiQueryBuilder.GetUpdateAllString();
-
+            apiAddress = apiQueryBuilder.GetUpdateAllString(); 
             Task<string> jsonTask = externalAsync.GetJsonData(apiAddress);
-            return jsonString = await jsonTask;
+            return await jsonTask;
         }
 
-        public string GetJsonString()
-        {
-            return jsonString;
-        }
+        
 
 
 
