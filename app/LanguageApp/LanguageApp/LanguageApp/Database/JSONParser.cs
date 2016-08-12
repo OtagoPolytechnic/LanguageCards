@@ -19,6 +19,14 @@ namespace LanguageApp.Database
 
         }
      
+        public void CreateMOCKJsonData()
+        {
+            jsonString = "{ 'Data' : " +
+                        "[  { }, { }, { } ]}"; 
+
+            //
+        }
+
         
     }
 }
