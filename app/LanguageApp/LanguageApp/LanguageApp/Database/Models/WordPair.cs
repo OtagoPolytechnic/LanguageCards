@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SQLite;
-using SQLitePCL;
+﻿using SQLite;
 using SQLiteNetExtensions.Attributes;
 
 namespace LanguageApp.Database.Models
 {
     [Table("WordPair")]
-    public class WordPair : Model
+    public class WordPair : IModel
     {
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey]
         public int id { get; set; }
 
         [ForeignKey(typeof(WordRecord))]

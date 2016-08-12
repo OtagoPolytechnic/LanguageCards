@@ -46,7 +46,7 @@
     <Compile Include="Database\Interfaces\ISQLiteConnection.cs" />
     <Compile Include="Database\JsonParser.cs" />
     <Compile Include="Database\MobileDB.cs" />
-    <Compile Include="Database\Models\IModel.cs" />
+    <Compile Include="Database\Interfaces\IModel.cs" />
     <Compile Include="Database\Models\Model.cs" />
     <Compile Include="Database\Models\Modification.cs" />
     <Compile Include="Database\Models\WordPair.cs" />
