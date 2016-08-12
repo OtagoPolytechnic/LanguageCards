@@ -12,34 +12,30 @@ namespace LanguageApp.Database
         //Handle connections and commuication between each class. 
 
         ApiQueryBuilder apiQueryBuilder;
-        ExternalAsync externalAsync;
-        JsonParser jsonParser;
-
-        public string jsonString;
+        ExternalApi externalAsync;
+        JsonParser jsonParser; 
+      
         public string accountKey; //Will be needed eventually to access the api.    
         public string apiAddress;               
-        public HttpWebResponse webResponse; //Response returned from te External Async class.
+        public WebResponse webResponse; //Response returned from te External Async class.
 
 
         public DatabaseManager()
         {
             apiQueryBuilder = new ApiQueryBuilder();
-            externalAsync = new ExternalAsync();
+            externalAsync = new ExternalApi();
             jsonParser = new JsonParser();
         }
 
 
-        public void CallApi()
+        public async Task<string> CallApi()
         {
-            apiAddress = apiQueryBuilder.GetUpdateAllString();
-            webResponse = externalAsync.CallApi(apiAddress);
-            jsonString = jsonParser.GetJsonString(webResponse);
+            apiAddress = apiQueryBuilder.GetUpdateAllString(); 
+            Task<string> jsonTask = externalAsync.GetJsonData(apiAddress);
+            return await jsonTask;
         }
 
-        public string GetJsonString()
-        {
-            return jsonString;
-        }
+        
 
 
 

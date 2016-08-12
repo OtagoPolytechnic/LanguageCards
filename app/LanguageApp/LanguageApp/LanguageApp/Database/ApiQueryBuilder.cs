@@ -25,8 +25,9 @@ namespace LanguageApp.Database
             return apiAddress + apiUpdateAll;
         }            
             
-        //  YYYY-MM-DDTHH:MM:SS ///SQLite date format
 
+
+        //  YYYY-MM-DDTHH:MM:SS ///SQLite date format    
         /// <JsonDateCoverter>
         /// Covert SQlite string into DateTime so it can then be coverted into json string date format later.
         /// </summary>

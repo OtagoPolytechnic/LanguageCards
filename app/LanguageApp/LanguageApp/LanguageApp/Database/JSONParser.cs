@@ -10,7 +10,7 @@ namespace LanguageApp.Database
 {
     public class JsonParser
     {
-        //Convert JSON data retrived from Async // API call into the sqlite database
+        //Convert JSON data retrived from Async / API call into the sqlite database
         public string jsonString;
 
 
@@ -18,13 +18,15 @@ namespace LanguageApp.Database
         {
 
         }
-
-        //Tempory test method
-        public string GetJsonString(HttpWebResponse webResponse)
+     
+        public void CreateMOCKJsonData()
         {
-            return jsonString = new StreamReader(webResponse.GetResponseStream()).ReadToEnd();
+            jsonString = "{ 'Data' : " +
+                        "[  { }, { }, { } ]}"; 
+
+            //
         }
-        
+
         
     }
 }
