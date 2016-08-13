@@ -6,7 +6,7 @@ namespace LanguageApp.Database.Models
     [Table("WordRecord")]
     public class WordRecord : IModel
     {
-        [PrimaryKey]
+        [SQLite.Net.Attributes.PrimaryKey]
         public int id { get; set; }
         public string word { get; set; }
         public string language { get; set; }

@@ -61,15 +61,15 @@ namespace LanguageApp.Database
             DatabaseQueries dbq = new DatabaseQueries(dbConnection);
             foreach (var model in insertList)
             {
-                dbq.InsertRecord(model);
+                //dbq.InsertRecord(model);
             }
             foreach (var model in updateList)
             {
-                dbq.UpdateRecord(model);
+                //dbq.UpdateRecord(model);
             }
             foreach (var model in deleteList)
             {
-                dbq.DeleteRecord(model);
+                //dbq.DeleteRecord(model);
             }
         }
 

@@ -6,7 +6,7 @@ namespace LanguageApp.Database.Models
     [Table("WordPair")]
     public class WordPair : IModel
     {
-        [PrimaryKey]
+        [SQLite.Net.Attributes.PrimaryKey]
         public int id { get; set; }
 
         [ForeignKey(typeof(WordRecord))]

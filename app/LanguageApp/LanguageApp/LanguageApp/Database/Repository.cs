@@ -13,51 +13,69 @@ namespace LanguageApp.Database
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IModel
     {
-        protected readonly SQLiteAsyncConnection connection;
-        protected static object locker = new object();
+        protected readonly SQLiteAsyncConnection con;
+        //protected static object locker = new object();  //  Can't lock async tasks incase of deadlocks
         // Establish connection in constructor ??
-        public Repository(SQLiteAsyncConnection connection)
+        public Repository(SQLiteAsyncConnection con)
         {
-            this.connection = connection;
+            this.con = con;
         }
 
         public async Task<int> CountRecords()
         {
-            return await connection.Table<TEntity>().CountAsync();
+            return await con.Table<TEntity>().CountAsync();
         }
 
         public async Task<TEntity> Get(int id)
         {
-            return await connection.GetAsync<TEntity>(id);
+            return await con.GetAsync<TEntity>(id);
         }
 
         public async Task<List<TEntity>> GetAll()
         {
-            return await connection.Table<TEntity>().ToListAsync();
+            return await con.Table<TEntity>().ToListAsync();
+        }
+
+        public async Task<List<TEntity>> Find(Expression<Func<TEntity, bool>> predicate)
+        {            
+            return await con.Table<TEntity>().Where(predicate).ToListAsync();
+        }
+        /// <summary>
+        ///     Inserts or updates a entity if it already exists
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public async Task Save(TEntity entity)
+        {
+            if (await CheckExistince(entity))
+                await con.UpdateAsync(entity);
+            else
+                await con.InsertAsync(entity);
         }
 
         // Can do singularly without list of TEntity 
-        public async Task Save(List<TEntity> entityList)
+        public async Task SaveList(List<TEntity> entityList)
         {
             foreach (TEntity entity in entityList)
-            {                
-                if (await CheckExistince(entity))
-                    await connection.UpdateAsync(entity);   
-                else
-                    await connection.InsertAsync(entity);
+            {
+                await Save(entity);
             }
         }
 
         // Could be <TEntity> on delete
-        public async Task Delete(List<TEntity> entityList)
+        public async Task Delete(TEntity entity)
+        {
+            if (await CheckExistince(entity))
+                await con.DeleteAsync(entity);
+            else
+                Debug.WriteLine("Delete Failed - Entity doesn't exist");
+        }
+
+        public async Task DeleteList(List<TEntity> entityList)
         {
             foreach (TEntity entity in entityList)
             {
-                if (await CheckExistince(entity))
-                    await connection.DeleteAsync(entity);
-                else
-                    Debug.WriteLine("Delete Failed - Entity doesn't exist");
-
+                await Delete(entity);
             }
         }
         /// <summary>
@@ -67,7 +85,7 @@ namespace LanguageApp.Database
         /// <returns></returns>
         public async Task<bool> CheckExistince(TEntity entity)
         {
-            var exists = await connection.Table<TEntity>()
+            var exists = await con.Table<TEntity>()
                             .Where(x => x.id == entity.id)
                             .FirstOrDefaultAsync();
             if (exists == null)
@@ -75,6 +93,17 @@ namespace LanguageApp.Database
             else
                 return true;
         }
+
+        // Not generic however needs to happen after each insert/update/delete ??? 
+        //public async Task UpdateModification()
+        //{
+        //    Modification lastModified = new Modification()
+        //    {
+        //        id = 0,
+        //        lastUpdated = DateTime.Now
+        //    };
+        //    await Save(lastModified);
+        //}
 
 
 

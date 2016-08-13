@@ -12,8 +12,11 @@ namespace LanguageApp.Database.Interfaces
         Task<int> CountRecords();
         Task<TEntity> Get(int id);
         Task<List<TEntity>> GetAll();
-
-        Task Save(List<TEntity> entityList);
-        Task Delete(List<TEntity> entityList);
+        Task<List<TEntity>> Find(Expression<Func<TEntity, bool>> predicate);
+        Task Save(TEntity entity);
+        Task SaveList(List<TEntity> entityList);
+        Task Delete(TEntity entity);
+        Task DeleteList(List<TEntity> entityList);
+        Task<bool> CheckExistince(TEntity entity);
     }
 }
