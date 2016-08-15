@@ -42,7 +42,6 @@
     <Compile Include="AppDatabaseTesting.cs" />
     <Compile Include="Database\ApiQueryBuilder.cs" />
     <Compile Include="Database\DatabaseManager.cs" />
-    <Compile Include="Database\DatabaseQueries.cs" />
     <Compile Include="Database\ExternalApi.cs" />
     <Compile Include="Database\Interfaces\IRepository.cs" />
     <Compile Include="Database\Interfaces\ISQLiteConnection.cs" />
@@ -53,9 +52,7 @@
     <Compile Include="Database\Models\Modification.cs" />
     <Compile Include="Database\Models\WordPair.cs" />
     <Compile Include="Database\Models\WordRecord.cs" />
-    <Compile Include="Database\Repository.cs" />
-    <Compile Include="Database\Repositorys\WordPairRepository.cs" />
-    <Compile Include="Database\Repositorys\WordRecordRepository.cs" />
+    <Compile Include="Database\DBGeneric.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

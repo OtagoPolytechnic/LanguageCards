@@ -1,5 +1,6 @@
 ﻿using LanguageApp.Database;
 using LanguageApp.Database.Models;
+using LanguageApp.Database.Repositorys;
 using SQLite.Net.Async;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,14 @@ namespace LanguageApp
 
         public AppDatabaseTesting()
         {
-            SQLiteAsyncConnection con = DependencyService.Get<ISQLiteConnection>().CreateConnection();
-            //con.CreateTablesAsync<WordRecord, WordPair, Modification>();
-            
+            MobileDB mdb = new MobileDB();
+            DBGeneric dbg = new DBGeneric();            
 
             string jsonString = "Ahhhh this didn't change";
 
-            List<WordRecord> wordList = MockWords();
+            List<WordRecord> add = AddList();
+            List<WordRecord> update = UpdateList();
+            List<WordRecord> delete = DeleteList();
 
             Button button = new Button
             {
@@ -40,17 +42,23 @@ namespace LanguageApp
 
             button.Clicked += async (sender, e) =>
             {
-                await con.CreateTablesAsync<WordRecord, WordPair, Modification>();
 
                 Label lb = new Label { Text = jsonString };
 
-                Repository<WordRecord> wrep = new Repository<WordRecord>(con);
+                //Repository<WordRecord> wrep = new Repository<WordRecord>(con);
 
                 label.Text = "Button Pressed...Waiting";
 
-                await wrep.SaveList(wordList);
+                //await wrep.SaveList(wordList);
                 //List<WordRecord> temp = await wrep.Find(predicate: x => x.id < 100);
-                List<WordRecord> temp = await wrep.GetAll();
+                //await mdb.SaveModelList(add);
+                //await mdb.SaveModelList(update);
+                //await mdb.DeleteModelList(delete);
+
+                string date = await mdb.LastUpdatedDate();
+                Debug.WriteLine(date);
+
+                List<WordRecord> temp = await dbg.GetAll<WordRecord>();
                 jsonString = temp[0].word;
 
                 foreach (WordRecord w in temp)
@@ -58,7 +66,7 @@ namespace LanguageApp
                     Debug.WriteLine(w.id + " = " + w.word);
                 }
 
-                label.Text = jsonString;
+                //label.Text = jsonString;
             };
 
             this.Content = new StackLayout
@@ -68,28 +76,47 @@ namespace LanguageApp
                     button,
                     label
                 }
-            };
-
-
-
-
-
+            };            
         }
 
-        public List<WordRecord> MockWords()
+        public List<WordRecord> AddList()
         {
             List<WordRecord> list = new List<WordRecord>();
             WordRecord a = new WordRecord();
-            a.id = 34;
-            a.word = "Word Test";
+            a.id = 5;
+            a.word = "Powerade";
             WordRecord b = new WordRecord();
-            b.id = 108;
-            b.word = "CavsNation";
+            b.id = 88;
+            b.word = "Xero";
             list.Add(a);
             list.Add(b);
             return list;
         }
 
+        public List<WordRecord> UpdateList()
+        {
+            List<WordRecord> list = new List<WordRecord>();
+            WordRecord a = new WordRecord();
+            a.id = 34;
+            a.word = "Testing";
+            WordRecord b = new WordRecord();
+            b.id = 108;
+            b.word = "Cavs - Nation";
+            list.Add(a);
+            list.Add(b);
+            return list;
+        }
+
+        public List<WordRecord> DeleteList()
+        {
+            List<WordRecord> list = new List<WordRecord>();
+            WordRecord a = new WordRecord();
+            a.id = 34;
+            a.word = "Testing";
+
+            list.Add(a);
+            return list;
+        }
 
 
 
