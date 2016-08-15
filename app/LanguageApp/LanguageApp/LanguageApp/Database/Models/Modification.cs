@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace LanguageApp.Database.Models
 {
     [Table("Modification")]
-    public class Modification
+    public class Modification : IModel
     {
-        [PrimaryKey]
-        public string tableName { get; set; }
-        public string lastUpdated { get; set; }
+        [SQLite.Net.Attributes.PrimaryKey]
+        public int id { get; set; }
+        public DateTime lastUpdated { get; set; }
     }
 }
