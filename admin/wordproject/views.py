@@ -37,5 +37,5 @@ class WordRecordQueryParamList(generics.ListAPIView):
 	
 	def get_queryset(self):
 		"""pulling terms out from the query parameters"""
-		ew = self.request.query_params.get('ew', None)
-		return WordRecord.objects.filter(englishWord = ew)
+		searchYear = self.request.query_params.get('year', None)
+		return WordRecord.objects.filter(year = searchYear)
