@@ -8,3 +8,6 @@ class WordRecord(models.Model):
     dateCreated = models.DateTimeField(auto_now_add=True)
     dateUpdated = models.DateTimeField(auto_now=True)
     publish = models.BooleanField(default=False)
+
+class Meta:
+	ordering=('maoriWord',)
