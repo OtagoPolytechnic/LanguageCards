@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from wordproject.serializers import WordRecordSerializer
 from rest_framework.views import APIView
 from rest_framework import generics
+from datetime import datetime
 
 class WordRecordList(APIView):
 	def get(self, request, format=None):
@@ -35,7 +36,24 @@ class WordRecordFilteredList(generics.ListAPIView):
 class WordRecordQueryParamList(generics.ListAPIView):
 	serializer_class = WordRecordSerializer
 	
+	#user must supply the last sync date
 	def get_queryset(self):
 		"""pulling terms out from the query parameters"""
-		searchYear = self.request.query_params.get('year', None)
-		return WordRecord.objects.filter(year = searchYear)
+		searchYear = self.request.query_params.get('afterYear', None)
+		#if no year param provided, return 404
+		if searchYear is None:
+			raise Http404
+		
+		searchMonth = self.request.query_params.get('afterMonth', None)
+		#if no month param provided, default to January
+		if searchMonth is None:
+			searchMonth = 1
+		
+		searchDate = self.request.query_params.get('afterDate', None)
+		#if no Date param provided, default to 1st of the month
+		if searchDate is None:
+			searchDate = 1
+		
+		userSearchDate = datetime(int(searchYear),int(searchMonth),int(searchDate))
+		
+		return WordRecord.objects.filter(dateCreated__date__gt = userSearchDate)
