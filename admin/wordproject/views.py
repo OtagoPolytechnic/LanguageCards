@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from wordproject.serializers import WordRecordSerializer
 from rest_framework.views import APIView
 from rest_framework import generics
-from datetime import datetime
+from datetime import date
 
 class WordRecordList(APIView):
 	def get(self, request, format=None):
@@ -31,7 +31,8 @@ class WordRecordFilteredList(generics.ListAPIView):
 	def get_queryset(self):
 		"""self.kwargs gets the field from the url"""
 		ew = self.kwargs['englishWord']
-		return WordRecord.objects.filter(englishWord = ew)
+		querySet = WordRecord.objects.filter(englishWord = ew)
+		return querySet
 		
 class WordRecordQueryParamList(generics.ListAPIView):
 	serializer_class = WordRecordSerializer
@@ -54,6 +55,7 @@ class WordRecordQueryParamList(generics.ListAPIView):
 		if searchDate is None:
 			searchDate = 1
 		
-		userSearchDate = datetime(int(searchYear),int(searchMonth),int(searchDate))
+		userSearchDate = date(int(searchYear),int(searchMonth),int(searchDate))
 		
-		return WordRecord.objects.filter(dateCreated__date__gt = userSearchDate)
+		querySet = WordRecord.objects.filter(dateUpdated__gt = userSearchDate)
+		return querySet
