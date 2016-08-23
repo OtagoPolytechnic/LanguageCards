@@ -13,8 +13,8 @@ class WordRecord(models.Model):
 
 
 class WordPair(models.Model):
-    original = models.ForeignKey('WordRecord', on_delete=models.CASCADE, related_name='original')
-    translation = models.ForeignKey('WordRecord', on_delete=models.CASCADE, )
+    original = models.ForeignKey('WordRecord', on_delete=models.CASCADE, related_name='original_word')
+    translation = models.ForeignKey('WordRecord', on_delete=models.CASCADE, related_name='translation_word')
 
 
 class Sound(models.Model):
