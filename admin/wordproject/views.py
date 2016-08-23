@@ -3,6 +3,9 @@ from wordproject.models import WordRecord
 from rest_framework import status
 from rest_framework.response import Response
 from wordproject.serializers import WordRecordSerializer
+from wordproject.serializers import WordPairSerializer
+from wordproject.serializers import SoundPairSerializer
+from wordproject.serializers import SoundSerializer
 from rest_framework.views import APIView
 from rest_framework import generics
 from datetime import date
