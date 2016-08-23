@@ -11,10 +11,16 @@ class WordRecord(models.Model):
     dateUpdated = models.DateTimeField(auto_now=True)
     publish = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.word
+
 
 class WordPair(models.Model):
     original = models.ForeignKey('WordRecord', on_delete=models.CASCADE, related_name='original_word')
     translation = models.ForeignKey('WordRecord', on_delete=models.CASCADE, related_name='translation_word')
+
+    def __str__(self):
+        return self.original.word
 
 
 class Sound(models.Model):
@@ -24,6 +30,9 @@ class Sound(models.Model):
 class SoundPair(models.Model):
     wordpair = models.ForeignKey('WordPair', on_delete=models.CASCADE, )
     sound = models.ForeignKey('Sound', on_delete=models.CASCADE, )
+
+    def __str__(self):
+        return self.wordpair.original
 
 
 class Meta:
