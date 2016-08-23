@@ -5,9 +5,15 @@ from .models import WordRecord, Sound, SoundPair, WordPair
 
 class WordRecordAdmin(admin.ModelAdmin):
     list_display = ['word', 'language', 'description', 'dateCreated', 'dateUpdated', 'publish']
-	
+
 class WordPairAdmin(admin.ModelAdmin):
-    list_display = ['original', 'translation']
+    list_display = ('get_original', 'get_translation')
+
+    def get_original(self, obj):
+        return obj.word
+	
+    def get_translation(self, obj):
+        return obj.word
 	
 class SoundAdmin(admin.ModelAdmin):
     list_display = ['blob']
