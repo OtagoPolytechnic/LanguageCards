@@ -1,5 +1,8 @@
 from django.http import Http404
 from wordproject.models import WordRecord
+from wordproject.models import WordPair
+from wordproject.models import Sound
+from wordproject.models import SoundPair
 from rest_framework import status
 from rest_framework.response import Response
 from wordproject.serializers import WordRecordSerializer
@@ -65,4 +68,13 @@ class WordRecordQueryParamList(generics.ListAPIView):
         userSearchDate = date(int(searchYear), int(searchMonth), int(searchDate))
 
         querySet = WordRecord.objects.filter(dateUpdated__gt=userSearchDate)
+        return querySet
+
+
+class WordPairList(generics.ListAPIView):
+    serializer_class = WordPairSerializer
+
+    def get_queryset(self):
+        """self.kwargs gets the field from the url"""
+        querySet = WordPair.objects.all()
         return querySet
