@@ -8,12 +8,12 @@ from wordproject.models import SoundPair
 class WordRecordSerializer(serializers.ModelSerializer):
     class Meta:
         model = WordRecord
-        fields = ('word', 'language', 'description', 'dateCreated', 'dateUpdated', 'publish')
+        fields = ('pk','word', 'language', 'description', 'dateCreated', 'dateUpdated', 'publish')
 
 
 class WordPairSerializer(serializers.ModelSerializer):
-    translation_word = WordRecordSerializer(source='wordrecord', many=True, read_only=True)
-    original_word = WordRecordSerializer(source='wordrecord', many=True, read_only=True)
+    translation_word = WordRecordSerializer(many=True, read_only=True)
+    original_word = WordRecordSerializer(many=True, read_only=True)
 
     class Meta:
         model = WordPair

@@ -12,13 +12,28 @@ from wordproject.serializers import SoundSerializer
 from rest_framework.views import APIView
 from rest_framework import generics
 from datetime import date
-
+from itertools import chain
 
 class WordRecordList(APIView):
     def get(self, request, format=None):
         wordRecords = WordRecord.objects.all()
-        serializer = WordRecordSerializer(wordRecords, many=True)
-        return Response(serializer.data)
+        wordPairs = WordPair.objects.all()
+        sound = Sound.objects.all()
+        soundPairs = SoundPair.objects.all()
+
+        #serializing queryset objects
+        wordRecordSerializer = WordRecordSerializer(wordRecords, many=True)
+        wordPairSerializer = WordPairSerializer(wordPairs, many=True)
+        soundSerializer = SoundSerializer(sound, many=True)
+        soundPairSerializer = SoundPairSerializer(soundPairs, many=True)
+
+        #returning serialized data
+        return Response({
+            'WordRecord': wordRecordSerializer.data,
+            'WordPair': wordPairSerializer.data,
+            'Sound': soundSerializer.data,
+            'SoundPair': soundPairSerializer.data,
+        })
 
 
 class WordRecordDetail(APIView):
@@ -45,7 +60,6 @@ class WordRecordFilteredList(generics.ListAPIView):
 
 
 class WordRecordQueryParamList(generics.ListAPIView):
-    serializer_class = WordRecordSerializer
 
     # user must supply the last sync date
     def get_queryset(self):
@@ -67,8 +81,15 @@ class WordRecordQueryParamList(generics.ListAPIView):
 
         userSearchDate = date(int(searchYear), int(searchMonth), int(searchDate))
 
-        querySet = WordRecord.objects.filter(dateUpdated__gt=userSearchDate)
-        return querySet
+        query1 = WordRecord.objects.filter(dateUpdated__gt=userSearchDate)
+        query2 = WordPair.objects.filter(dateUpdated__gt=userSearchDate)
+
+        serializer1 = WordRecordSerializer(query1,many=true)
+
+        querySet = chain(query1, query2)
+        return Response({
+            'wordrecord': query1.data,
+        })
 
 
 class WordPairList(generics.ListAPIView):
