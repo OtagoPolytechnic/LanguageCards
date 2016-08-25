@@ -40,6 +40,11 @@
     <Compile Include="App.cs" />
     <Compile Include="AppAsyncTesting.cs" />
     <Compile Include="AppDatabaseTesting.cs" />
+    <Compile Include="Classes\CardCarouselPageCS.cs" />
+    <Compile Include="Classes\CardContainerPageCS.cs" />
+    <Compile Include="Classes\MainPageCS.cs" />
+    <Compile Include="Classes\SplashPageCS.cs" />
+    <Compile Include="Classes\WordPageCS.cs" />
     <Compile Include="Database\ApiQueryBuilder.cs" />
     <Compile Include="Database\DatabaseManager.cs" />
     <Compile Include="Database\ExternalApi.cs" />
@@ -55,9 +60,7 @@
     <Compile Include="Database\DBGeneric.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Classes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net45+win8+wpa81\Microsoft.Threading.Tasks.dll</HintPath>
