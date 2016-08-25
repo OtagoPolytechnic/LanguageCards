@@ -33,38 +33,6 @@ namespace LanguageApp.Database
             return lastest.lastUpdated.ToString();
         }
         /// <summary>
-        ///     Returns all WordRecords currently in the database
-        /// </summary>
-        /// <returns></returns>
-        public async Task<List<WordRecord>> GetAllWordRecords()
-        {
-            return await db.GetAll<WordRecord>();
-        }
-        /// <summary>
-        ///     Returns all WordPairs currently in the database
-        /// </summary>
-        /// <returns></returns>
-        public async Task<List<WordPair>> GetAllWordPairs()
-        {
-            return await db.GetAll<WordPair>();
-        }
-        /// <summary>
-        ///     Returns one WordRecord that matches the id passed in
-        /// </summary>
-        /// <returns></returns>
-        public async Task<WordRecord> GetWordRecord(int id)
-        {
-            return await db.Get<WordRecord>(id);
-        }
-        /// <summary>
-        ///     Returns one WordPair that matches the id passed in     // Is this needed? In what situation would you need to get 1 word pair by id? Just filter on List<WordPair>
-        /// </summary>
-        /// <returns></returns>
-        public async Task<WordPair> GetWordPair(int id)
-        {
-            return await db.Get<WordPair>(id);
-        }
-        /// <summary>
         ///     Receives WordRecord to insert or update in the database
         /// </summary>
         public async Task SaveModel(WordRecord w)
