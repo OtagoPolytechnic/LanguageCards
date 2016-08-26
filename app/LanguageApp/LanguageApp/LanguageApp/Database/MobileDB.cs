@@ -49,7 +49,7 @@ namespace LanguageApp.Database
             return await db.GetAll<WordPair>();
         }
         /// <summary>
-        ///     Returns one WordRecord that matches the id passed in
+        ///     Returns one WordRecord that matches the id passed in.
         /// </summary>
         /// <returns></returns>
         public async Task<WordRecord> GetWordRecord(int id)
