@@ -14,6 +14,7 @@ from rest_framework import generics
 from datetime import date
 from itertools import chain
 
+
 class WordRecordList(APIView):
     def get(self, request, format=None):
         wordRecords = WordRecord.objects.all()
@@ -21,13 +22,13 @@ class WordRecordList(APIView):
         sound = Sound.objects.all()
         soundPairs = SoundPair.objects.all()
 
-        #serializing queryset objects
+        # serializing queryset objects
         wordRecordSerializer = WordRecordSerializer(wordRecords, many=True)
         wordPairSerializer = WordPairSerializer(wordPairs, many=True)
         soundSerializer = SoundSerializer(sound, many=True)
         soundPairSerializer = SoundPairSerializer(soundPairs, many=True)
 
-        #returning serialized data
+        # returning serialized data
         return Response({
             'WordRecord': wordRecordSerializer.data,
             'WordPair': wordPairSerializer.data,
@@ -37,14 +38,14 @@ class WordRecordList(APIView):
 
 
 class WordRecordDetail(APIView):
-    def get_object(self, pk):
+    def get_object(self, id):
         try:
-            return WordRecord.objects.get(pk=pk)
+            return WordRecord.objects.get(id=id)
         except WordRecord.DoesNotExist:
             raise Http404
 
-    def get(self, request, pk, format=None):
-        wordRecord = self.get_object(pk)
+    def get(self, request, id, format=None):
+        wordRecord = self.get_object(id)
         serializer = WordRecordSerializer(wordRecord)
         return Response(serializer.data)
 
@@ -60,7 +61,6 @@ class WordRecordFilteredList(generics.ListAPIView):
 
 
 class WordRecordQueryParamList(generics.ListAPIView):
-
     # user must supply the last sync date
     def get_queryset(self):
         """pulling terms out from the query parameters"""
@@ -84,7 +84,7 @@ class WordRecordQueryParamList(generics.ListAPIView):
         query1 = WordRecord.objects.filter(dateUpdated__gt=userSearchDate)
         query2 = WordPair.objects.filter(dateUpdated__gt=userSearchDate)
 
-        serializer1 = WordRecordSerializer(query1,many=true)
+        serializer1 = WordRecordSerializer(query1, many=true)
 
         querySet = chain(query1, query2)
         return Response({
