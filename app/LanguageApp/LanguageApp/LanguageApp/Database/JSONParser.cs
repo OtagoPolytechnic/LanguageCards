@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LanguageApp.Database.Models;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,14 +21,17 @@ namespace LanguageApp.Database
 
         }
      
-        public void CreateMOCKJsonData()
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="jsonData"></param>
+        /// <returns></returns>
+        public RootObject JsonDeserializer(string jsonData)
         {
-            jsonString = "{ 'Data' : " +
-                        "[  { }, { }, { } ]}"; 
-
-            //
+            var groot = JsonConvert.DeserializeObject<RootObject>(jsonData);
+            return groot;
         }
-
         
     }
 }

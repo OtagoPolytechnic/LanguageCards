@@ -50,10 +50,13 @@
     <Compile Include="Database\Interfaces\IModel.cs" />
     <Compile Include="Database\Models\Model.cs" />
     <Compile Include="Database\Models\Modification.cs" />
+    <Compile Include="Database\Models\RootObject.cs" />
     <Compile Include="Database\Models\WordPair.cs" />
     <Compile Include="Database\Models\WordRecord.cs" />
     <Compile Include="Database\DBGeneric.cs" />
+    <Compile Include="MainPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WordScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Classes\" />
