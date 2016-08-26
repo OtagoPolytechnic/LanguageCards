@@ -12,7 +12,7 @@ namespace LanguageApp
         public App()
         {
             // The root page of your application
-            MainPage = new AppDatabaseTesting();
+            MainPage = new AppAsyncTestingPage();
             
         }
 

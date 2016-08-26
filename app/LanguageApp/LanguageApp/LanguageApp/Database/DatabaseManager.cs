@@ -32,6 +32,7 @@ namespace LanguageApp.Database
         {
             apiAddress = apiQueryBuilder.GetUpdateAllString(); 
             Task<string> jsonTask = externalAsync.GetJsonData(apiAddress);
+            jsonParser.JsonDeserializer(await jsonTask);
             return await jsonTask;
         }
 
