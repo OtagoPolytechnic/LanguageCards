@@ -7,8 +7,11 @@ using Xamarin.Forms;
 
 namespace LanguageApp.Classes
 {
-    public class WordScreenCS : ContentPage
+    public class WordPageCS : ContentPage
     {
+        public WordPageCS(DisplayObject displayObject)
+        {
 
+        }
     }
 }

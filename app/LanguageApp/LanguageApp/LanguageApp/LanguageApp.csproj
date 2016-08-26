@@ -42,6 +42,8 @@
     <Compile Include="AppDatabaseTesting.cs" />
     <Compile Include="Classes\CardCarouselPageCS.cs" />
     <Compile Include="Classes\CardContainerPageCS.cs" />
+    <Compile Include="Classes\DisplayObject.cs" />
+    <Compile Include="Classes\DisplayObjectMaker.cs" />
     <Compile Include="Classes\MainPageCS.cs" />
     <Compile Include="Classes\SplashPageCS.cs" />
     <Compile Include="Classes\WordPageCS.cs" />
