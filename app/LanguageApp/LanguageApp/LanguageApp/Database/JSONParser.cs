@@ -21,9 +21,16 @@ namespace LanguageApp.Database
 
         }
      
-        public void JsonDeserializer(string jsonData)
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="jsonData"></param>
+        /// <returns></returns>
+        public RootObject JsonDeserializer(string jsonData)
         {
-            var json = Task.Factory.StartNew(() => JsonConvert.DeserializeObject<RootObject>(jsonData));
+            var groot = JsonConvert.DeserializeObject<RootObject>(jsonData);
+            return groot;
         }
         
     }
