@@ -23,7 +23,7 @@ namespace LanguageApp.Classes
                 string original = wordRecords.Find(word => word.id == wp.original).word;
                 string translation = wordRecords.Find(word => word.id == wp.translation).word;
                 string description = wordRecords.Find(word => word.id == wp.original).description;
-                DisplayObject d = new DisplayObject(original, translation, description);
+                displayObjectList.Add(new DisplayObject(original, translation, description));
             }
 
             return displayObjectList;
