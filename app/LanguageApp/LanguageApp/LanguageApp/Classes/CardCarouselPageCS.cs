@@ -10,11 +10,12 @@ namespace LanguageApp.Classes
     public class CardCarouselScreenCS : CarouselPage
     {
         public CardCarouselScreenCS(List<DisplayObject> displayObjects)
-        {
+        {            
             
             if (displayObjects.Count == 0)
             {
-                //this.Children.Add(new NoCardsAvailablePage);
+                DisplayObject d = new DisplayObject("No words in Database", "", "");
+                this.Children.Add(new WordPageCS(d));
             }
             else
             {

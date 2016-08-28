@@ -15,6 +15,7 @@ namespace LanguageApp.Classes
     {
         public SplashScreenCS()
         {
+            DatabaseManager dbm = new DatabaseManager();
             MobileDB mobliedb = new MobileDB();
             DisplayObjectMaker displayObjectMaker = new DisplayObjectMaker();           
 
@@ -24,9 +25,13 @@ namespace LanguageApp.Classes
             };
 
             button.Clicked += async (sender, e) =>
-            {                
+            {
+                await dbm.CallApi();
+
                 List<WordPair> wordPairs = await mobliedb.GetAllWordPairs();
                 List<WordRecord> wordRecords = await mobliedb.GetAllWordRecords();
+
+                
 
                 List<WordPageCS> wordPageList = new List<WordPageCS>(); // MAKE PAGES WITH DISPLAY OBJECTS THEN 
 
@@ -55,31 +60,7 @@ namespace LanguageApp.Classes
             this.Content = stackLayout;
 
         }
-
-        public async Task AddNewWordPairs(MobileDB m)
-        {
-            WordPair w1 = new WordPair();
-            w1.id = 94;
-            w1.original = 108;
-            w1.translation = 5;
-            WordPair w2 = new WordPair();
-            w2.id = 95;
-            w2.original = 88;
-            w2.translation = 10;
-            WordPair w3 = new WordPair();
-            w3.id = 96;
-            w3.original = 14;
-            w3.translation = 12;
-            WordPair w4 = new WordPair();
-            w4.id = 97;
-            w4.original = 15;
-            w4.translation = 11;
-
-            await m.SaveModel(w1);
-            await m.SaveModel(w2);
-            await m.SaveModel(w3);
-            await m.SaveModel(w4);
-        }
+        
 
 
     }

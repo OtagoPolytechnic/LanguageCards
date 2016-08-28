@@ -35,7 +35,7 @@ namespace LanguageApp.Classes
                     case "Home":
                         //List<WordRecord> temp = await dbg.GetAll<WordRecord>();
                         gotoPage = new MainPageCS(displayObjects);
-                        Navigation.PopModalAsync();
+                        //Navigation.PopModalAsync();
                         break;
                 }
                 Detail = new NavigationPage(gotoPage);
