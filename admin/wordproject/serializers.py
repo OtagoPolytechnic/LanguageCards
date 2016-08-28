@@ -17,7 +17,7 @@ class WordPairSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WordPair
-        fields = ('original', 'translation', 'original_word', 'translation_word')
+        fields = ('id', 'original', 'translation', 'original_word', 'translation_word')
 
 
 class SoundSerializer(serializers.ModelSerializer):
