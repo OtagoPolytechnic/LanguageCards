@@ -10,7 +10,7 @@ namespace LanguageApp.Classes
     public class MainPageCS : MasterDetailPage
     {
 
-        public MainPageCS(List<DisplayObject> displayObjects)
+        public MainPageCS(AppManager appManager, List<DisplayObject> displayObjects)
         {
             Title = "MainPage Using MasterDetailPage";
             string[] myPageNames = { "Home", "Second", "Third" };
@@ -34,11 +34,11 @@ namespace LanguageApp.Classes
                 {
                     case "Home":
                         //List<WordRecord> temp = await dbg.GetAll<WordRecord>();
-                        gotoPage = new MainPageCS(displayObjects);
+                        //gotoPage = new MainPageCS(displayObjects);
                         //Navigation.PopModalAsync();
                         break;
                 }
-                Detail = new NavigationPage(gotoPage);
+                //Detail = new NavigationPage(gotoPage);
                 ((ListView)sender).SelectedItem = null;
                 this.IsPresented = false;
             };

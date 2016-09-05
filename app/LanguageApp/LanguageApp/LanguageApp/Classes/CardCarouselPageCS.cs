@@ -25,8 +25,8 @@ namespace LanguageApp.Classes
 
                 }
             }
-            
-            BackgroundImage = "icon.png";
+
+            BackgroundColor = Color.Red;
             
         }
 

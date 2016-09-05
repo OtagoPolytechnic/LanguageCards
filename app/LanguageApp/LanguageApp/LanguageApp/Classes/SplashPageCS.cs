@@ -13,54 +13,33 @@ namespace LanguageApp.Classes
 {
     public class SplashScreenCS : ContentPage
     {
+        private AppManager appManager;
+
         public SplashScreenCS()
+        {
+            BackgroundImage = "ira_on_black.jpg";
+
+            appManager = new AppManager();
+
+            Task.Run(() => AsyncCall()).Wait();                        
+        }
+
+        public async Task AsyncCall()
         {
             DatabaseManager dbm = new DatabaseManager();
             MobileDB mobliedb = new MobileDB();
-            DisplayObjectMaker displayObjectMaker = new DisplayObjectMaker();           
+            DisplayObjectMaker displayObjectMaker = new DisplayObjectMaker();
 
-            Button button = new Button
-            {
-                Text = String.Format("Do top secret async stuff")
-            };
+            await dbm.CallApi();
+            List<WordPair> wordPairs = await mobliedb.GetAllWordPairs();
+            List<WordRecord> wordRecords = await mobliedb.GetAllWordRecords();
+            
+            List<WordPageCS> wordPageList = new List<WordPageCS>();
 
-            button.Clicked += async (sender, e) =>
-            {
-                await dbm.CallApi();
-
-                List<WordPair> wordPairs = await mobliedb.GetAllWordPairs();
-                List<WordRecord> wordRecords = await mobliedb.GetAllWordRecords();
-
-                
-
-                List<WordPageCS> wordPageList = new List<WordPageCS>(); // MAKE PAGES WITH DISPLAY OBJECTS THEN 
-
-                foreach (WordRecord w in wordRecords)
-                {
-                    Debug.WriteLine(w.id + " " + w.word);
-                }
-
-                List<DisplayObject> displayObjects = displayObjectMaker.CreateDisplayObjects(wordPairs, wordRecords);  // THIS IS NOT WORKING CORRECTLY 
-
-                foreach (DisplayObject d in displayObjects)
-                {
-                    Debug.WriteLine(d.orginal + "   " + d.translation);
-                }
-
-                //await Navigation.PushAsync(new MainPageCS(displayObjects));
-                await Navigation.PushModalAsync(new MainPageCS(displayObjects));
-                //label.Text = jsonString;
-            };
-
-            var stackLayout = new StackLayout
-            {
-                Children = { button }
-
-            };
-            this.Content = stackLayout;
-
+            List<DisplayObject> displayObjects = displayObjectMaker.CreateDisplayObjects(wordPairs, wordRecords);
+            
+            await Navigation.PushModalAsync(new MainPageCS(appManager, displayObjects));
         }
-        
 
 
     }
