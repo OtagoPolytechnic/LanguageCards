@@ -14,16 +14,17 @@ namespace LanguageApp.Classes
 
         }
 
-        public List<DisplayObject> CreateDisplayObjects(List<WordPair> wordPairs, List<WordRecord> wordRecords)
+        public LinkedList<DisplayObject> CreateDisplayObjects(List<WordPair> wordPairs, List<WordRecord> wordRecords)
         {
-            List<DisplayObject> displayObjectList = new List<DisplayObject>();
-
+            LinkedList<DisplayObject> displayObjectList = new LinkedList<DisplayObject>();
+            int index = 0;
             foreach (WordPair wp in wordPairs)
             {
                 string original = wordRecords.Find(word => word.id == wp.original).word;
                 string translation = wordRecords.Find(word => word.id == wp.translation).word;
                 string description = wordRecords.Find(word => word.id == wp.original).description;
-                displayObjectList.Add(new DisplayObject(original, translation, description));
+                displayObjectList.AddLast(new DisplayObject(index, original, translation, description));
+                index++;
             }
 
             return displayObjectList;

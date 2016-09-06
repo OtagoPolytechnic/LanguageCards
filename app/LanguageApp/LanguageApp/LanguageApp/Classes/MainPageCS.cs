@@ -10,7 +10,7 @@ namespace LanguageApp.Classes
     public class MainPageCS : MasterDetailPage
     {
 
-        public MainPageCS(AppManager appManager, List<DisplayObject> displayObjects)
+        public MainPageCS(AppManager appManager, LinkedList<DisplayObject> displayObjects)
         {
             Title = "MainPage Using MasterDetailPage";
             string[] myPageNames = { "Home", "Second", "Third" };

@@ -36,7 +36,7 @@ namespace LanguageApp.Classes
             
             List<WordPageCS> wordPageList = new List<WordPageCS>();
 
-            List<DisplayObject> displayObjects = displayObjectMaker.CreateDisplayObjects(wordPairs, wordRecords);
+            LinkedList<DisplayObject> displayObjects = displayObjectMaker.CreateDisplayObjects(wordPairs, wordRecords);
             
             await Navigation.PushModalAsync(new MainPageCS(appManager, displayObjects));
         }

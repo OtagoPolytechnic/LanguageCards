@@ -8,14 +8,16 @@ namespace LanguageApp.Classes
 {
     public class DisplayObject
     {
+        public int index { get; }
         public string orginal { get; }
         public string translation { get; }
         public string description { get; }
         // Language ??
         // sound properties
 
-        public DisplayObject(string orginal, string translation, string description)
+        public DisplayObject(int index, string orginal, string translation, string description)
         {
+            this.index = index;
             this.orginal = orginal;
             this.translation = translation;
             this.description = description;
