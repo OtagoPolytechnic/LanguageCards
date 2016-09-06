@@ -23,7 +23,7 @@ namespace LanguageApp.Classes
             //this.Content { };
 
             Button soundButton = new Button { };
-            soundButton.Image = "ic_volume_up_black_24dp.png";
+            //soundButton.Image = "ic_volume_up_black_24dp.png";
 
             var mountainBanner = new Image { };
             mountainBanner.Source = "ira_mountain.jpg";
