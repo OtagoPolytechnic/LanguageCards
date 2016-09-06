@@ -1,19 +1,15 @@
 ﻿using LanguageApp.Database;
-using LanguageApp.Database;
 using LanguageApp.Database.Models;
 using LanguageApp.Database.Repositorys;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace LanguageApp
 {
-    public class MainPage : CarouselPage
+    public class MainPageCS : CarouselPage
     {
-        public MainPage()
+        public MainPageCS()
         {
             //MobileDB mdb = new MobileDB();
             //DBGeneric dbg = new DBGeneric();
@@ -59,7 +55,7 @@ namespace LanguageApp
             list = await dbg.GetAll<WordRecord>();
             foreach (WordRecord w in list)
             {
-                this.Children.Add(new WordScreen(w));
+                this.Children.Add(new WordPage(w));
 
             }
 
