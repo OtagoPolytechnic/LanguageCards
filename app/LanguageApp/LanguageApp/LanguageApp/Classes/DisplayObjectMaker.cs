@@ -27,7 +27,15 @@ namespace LanguageApp.Classes
                 index++;
             }
 
-            return displayObjectList;
+            // JUST RETURN A COUPLE OF DISPLAY OBJECTS SO THIS WHOLE APP DOESNT CRASH AND BURN
+            LinkedList<DisplayObject> smallList = new LinkedList<DisplayObject>();
+            smallList.AddLast(displayObjectList.First.Value);
+            smallList.AddLast(displayObjectList.First.Next.Value);
+            smallList.AddLast(displayObjectList.First.Next.Next.Value);
+            smallList.AddLast(displayObjectList.First.Next.Next.Next.Value);
+            return smallList;
+            
+            //return displayObjectList;
         }
 
     }

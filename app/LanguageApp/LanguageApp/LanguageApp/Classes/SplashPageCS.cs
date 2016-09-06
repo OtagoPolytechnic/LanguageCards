@@ -17,11 +17,39 @@ namespace LanguageApp.Classes
 
         public SplashScreenCS()
         {
-            BackgroundImage = "ira_on_black.jpg";
+            //BackgroundImage = "ira_on_black.jpg";
 
-            appManager = new AppManager();
+            //appManager = new AppManager();
 
-            Task.Run(() => AsyncCall()).Wait();                        
+            //Task.Run(() => AsyncCall()).Wait();        
+
+            Button button = new Button { Text = "Splash screen placeholder" };
+
+
+            button.Clicked += async (sender, e) =>
+             {
+                 DatabaseManager dbm = new DatabaseManager();
+                 MobileDB mobliedb = new MobileDB();
+                 DisplayObjectMaker displayObjectMaker = new DisplayObjectMaker();
+                 appManager = new AppManager();
+                 await dbm.CallApi();
+                 List<WordPair> wordPairs = await mobliedb.GetAllWordPairs();
+                 List<WordRecord> wordRecords = await mobliedb.GetAllWordRecords();
+
+                 List<WordPageCS> wordPageList = new List<WordPageCS>();
+
+                 LinkedList<DisplayObject> displayObjects = displayObjectMaker.CreateDisplayObjects(wordPairs, wordRecords);
+
+                 await Navigation.PushModalAsync(new MainPageCS(appManager, displayObjects));
+
+             };
+
+            var stackLayout = new StackLayout
+            {
+                Children = { button }
+
+            };
+            this.Content = stackLayout;
         }
 
         public async Task AsyncCall()
@@ -40,6 +68,8 @@ namespace LanguageApp.Classes
             
             await Navigation.PushModalAsync(new MainPageCS(appManager, displayObjects));
         }
+
+
 
 
     }
