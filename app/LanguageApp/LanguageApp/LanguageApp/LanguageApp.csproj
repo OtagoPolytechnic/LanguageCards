@@ -46,6 +46,7 @@
     <Compile Include="Classes\DisplayObjectMaker.cs" />
     <Compile Include="Classes\MainPageCS.cs" />
     <Compile Include="Classes\SplashPageCS.cs" />
+    <Compile Include="Classes\WordLabel.cs" />
     <Compile Include="Classes\WordPageCS.cs" />
     <Compile Include="Database\ApiQueryBuilder.cs" />
     <Compile Include="Database\DatabaseManager.cs" />
