@@ -22,9 +22,10 @@ namespace LanguageApp.Classes
             // Relative layout
             var relativeLayout = new RelativeLayout();
             
-
+                        
             Button soundButton = new Button { };
-            //soundButton.Image = "ic_volume_up_black_24dp.png";
+            soundButton.Image = "ic_volume_up_black_24dp";
+            soundButton.BackgroundColor = Color.White;
 
             var mountainBanner = new Image { };
             mountainBanner.Source = "ira_mountain.jpg";
@@ -134,15 +135,29 @@ namespace LanguageApp.Classes
                 {
                     return (Parent.Height / 2);
                 }));
+            // Sound Image / button
+            relativeLayout.Children.Add(soundButton,
+                Constraint.RelativeToParent((Parent) =>
+                {
+                    return (Parent.Width / 2) - (soundButton.Width / 2);
+                }),
+                Constraint.RelativeToParent((Parent) =>
+                {
+                    return Parent.Height - (soundButton.Height * 1.5);
+                }));
 
-            
+            // Sound button click handler
+            soundButton.Clicked += (sender, e) =>
+            {
+                //soundButton.Image = "ira_mountain.jpg";
+            };
 
 
             this.Content = new Frame {
-                Content = relativeLayout,
-                OutlineColor = Color.Lime,
-                HasShadow = true,
-                BackgroundColor = Color.White, Opacity = 1
+            Content = relativeLayout,
+            OutlineColor = Color.Lime,
+            HasShadow = true,
+            BackgroundColor = Color.White, Opacity = 1
                 
             };
 
