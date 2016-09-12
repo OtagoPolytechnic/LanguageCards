@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LanguageApp.Classes.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -149,7 +150,7 @@ namespace LanguageApp.Classes
             // Sound button click handler
             soundButton.Clicked += (sender, e) =>
             {
-                //soundButton.Image = "ira_mountain.jpg";
+                DependencyService.Get<IAudioPlayer>().PlayAudioFile("Dragonball Z.mp3");
             };
 
 

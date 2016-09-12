@@ -44,6 +44,7 @@
     <Compile Include="Classes\CardCarouselPageCS.cs" />
     <Compile Include="Classes\DisplayObject.cs" />
     <Compile Include="Classes\DisplayObjectMaker.cs" />
+    <Compile Include="Classes\Interfaces\IAudioPlayer.cs" />
     <Compile Include="Classes\MainPageCS.cs" />
     <Compile Include="Classes\SplashPageCS.cs" />
     <Compile Include="Classes\WordLabel.cs" />
@@ -66,9 +67,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WordScreen.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Classes\Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net45+win8+wpa81\Microsoft.Threading.Tasks.dll</HintPath>
