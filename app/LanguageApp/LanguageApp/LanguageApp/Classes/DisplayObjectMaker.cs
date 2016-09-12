@@ -32,7 +32,7 @@ namespace LanguageApp.Classes
             smallList.AddLast(displayObjectList.First.Value);
             smallList.AddLast(displayObjectList.First.Next.Value);
             smallList.AddLast(displayObjectList.First.Next.Next.Value);
-            smallList.AddLast(displayObjectList.First.Next.Next.Next.Value);
+            //smallList.AddLast(displayObjectList.First.Next.Next.Next.Value);
             return smallList;
             
             //return displayObjectList;
