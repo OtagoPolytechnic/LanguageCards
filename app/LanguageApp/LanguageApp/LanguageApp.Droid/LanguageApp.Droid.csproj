@@ -232,7 +232,7 @@
     <AndroidResource Include="Resources\drawable-hdpi\ic_volume_up_white_24dp.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Dragonball Z.mp3" />
+    <AndroidAsset Include="Assets\Mauri Ora.mp3" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

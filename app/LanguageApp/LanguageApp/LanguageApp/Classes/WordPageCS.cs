@@ -147,10 +147,17 @@ namespace LanguageApp.Classes
                     return Parent.Height - (soundButton.Height * 1.5);
                 }));
 
-            // Sound button click handler
+             
+            //
             soundButton.Clicked += (sender, e) =>
             {
-                DependencyService.Get<IAudioPlayer>().PlayAudioFile("Dragonball Z.mp3");
+                try
+                {
+                    DependencyService.Get<IAudioPlayer>().PlayAudioFile(displayObject.orginal + ".mp3");
+                }
+                catch (Exception)
+                {
+                }
             };
 
 

@@ -12,6 +12,7 @@ namespace LanguageApp.Classes
         public string orginal { get; }
         public string translation { get; }
         public string description { get; }
+        //public string soundfile { get; }
         // Language ??
         // sound properties
 
