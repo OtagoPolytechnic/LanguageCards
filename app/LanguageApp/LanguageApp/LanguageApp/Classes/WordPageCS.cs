@@ -9,12 +9,8 @@ namespace LanguageApp.Classes
 {
     public class WordPageCS : ContentPage
     {
-        public DisplayObject Display { get; }
-
         public WordPageCS(DisplayObject displayObject)
         {
-            this.Display = displayObject;
-
             Padding = new Thickness(0, 0, 0, 0);
 
             BackgroundColor = Color.Blue;
@@ -40,7 +36,7 @@ namespace LanguageApp.Classes
             {
                 Content = mountainBanner
             };
-            
+            // SHOULD BE TRANSLATED NOT ORIGINAL . SWITCH WITH OTHER LABEL. TRANSLATED ABOVE 
             Label translatedLabel = new WordLabel
             {
                 Text = displayObject.orginal,

@@ -10,76 +10,101 @@ namespace LanguageApp.Classes
 {
     public class CardCarouselScreenCS : CarouselPage
     {
-        LinkedList<DisplayObject> displayObjects;
+        private List<DisplayObject> displayObjects;
+        List<WordPageCS> currentPages;
+        
+        private int previous;
+        private int current;
+        private int next;
 
-        // Remove index from display objects . Not needed
-        private int previousPage;
-        private int currentPage;
-
-        private LinkedListNode<DisplayObject> previousNode;
-        private LinkedListNode<DisplayObject> currentNode;
-        private LinkedListNode<DisplayObject> nextNode;
-        //List<DisplayObject> displayObjects;
+        private bool load;
+        private bool started;
         // Create list/stack of 3 display objects?
 
-        public CardCarouselScreenCS(LinkedList<DisplayObject> displayObjects)
+        public CardCarouselScreenCS(List<DisplayObject> displayObjects)
         {
-            //this.displayObjects = new LinkedList<DisplayObject>();
+            previous = -1;
+            current = 0;
+            next = 1;
+            load = false;
+            started = false;
+
             this.displayObjects = displayObjects;
 
-            if (displayObjects.Count == 0)
-            {
-                DisplayObject d = new DisplayObject(0, "No words in Database", "", "");
-                this.Children.Add(new WordPageCS(d));
-            }
-            else
-            {
-                foreach (DisplayObject d in displayObjects)
-                {
-                    this.Children.Add(new WordPageCS(d));
-                }
-
-                //previousNode = null;
-                //currentNode = displayObjects.First;
-                //nextNode = currentNode.Next;
-
-
-                ////LinkedListNode<DisplayObject> firstNode = displayObjects.First;
-                ////LinkedListNode<DisplayObject> nextNode = firstNode.Next;
-
-                //this.Children.Add(new WordPageCS(currentNode.Value));
-                //this.Children.Add(new WordPageCS(nextNode.Value));
-
-                //WordPageCS temp = new WordPageCS(currentNode.Value);
-                //temp.Id = 2;
-            }
+            currentPages = new List<WordPageCS>();
 
             
-
-            BackgroundColor = Color.Red;
             
+            
+            this.Children.Add(new WordPageCS(displayObjects[0]));
+            this.Children.Add(new WordPageCS(displayObjects[1]));
+
+            load = true;
+            //CurrentPageChanged += HandleCurrentPageChanged;
+
         }
 
-        protected override void OnPagesChanged(NotifyCollectionChangedEventArgs e)
-        {
-            base.OnPagesChanged(e);
+        //protected override void OnPagesChanged(NotifyCollectionChangedEventArgs e)
+        //{
+        //    base.OnPagesChanged(e);
 
-            //e.Action
-        }
+        //    e.Action
+        //}
 
         protected override void OnCurrentPageChanged()
         {
             base.OnCurrentPageChanged();
+            if (load)
+            {
+                if (CurrentPage.Equals(Children[Children.Count - 1]))
+                {
+                    SwipeLeft();
+                }
+                else
+                {
+                    SwipeRight();
+                }
+            }
+        }
 
-            // if currentpage displayobect == next node then its swipe left
-            // update nodes afterwards
+        public void SwipeLeft()
+        {
+            previous += 1;
+            current += 1;
+            next += 1;
+            if (next <= displayObjects.Count - 1)
+            {
+                Children.Add((new WordPageCS(displayObjects[next])));
+                if (previous > 0)
+                {
+                    Children.RemoveAt(0);
+                }
+            }
+        }
 
-            //CurrentPage.
+        public void SwipeRight()
+        {
+            previous -= 1;
+            current -= 1;
+            next -= 1;
+            if (previous > 0)
+            {
+                Children.Add((new WordPageCS(displayObjects[previous])));
+                if (next <= displayObjects.Count - 1)
+                {
+                    Children.RemoveAt(3);
+                }
+            }
+        }
+        
+            //public void HandleCurrentPageChanged(object sender, EventArgs e)
+            //{
+            //    // if swiped left --->
 
-            
+            //    // swiped right <-----
+
+            //}
 
 
         }
-
     }
-}
