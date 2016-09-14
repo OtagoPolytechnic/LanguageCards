@@ -46,8 +46,8 @@ namespace LanguageApp.Classes
 
             var stackLayout = new StackLayout
             {
-                Children = { button }
-
+                Children = { button },
+                Padding = new Thickness(0, 200, 0 , 0)
             };
             this.Content = stackLayout;
         }

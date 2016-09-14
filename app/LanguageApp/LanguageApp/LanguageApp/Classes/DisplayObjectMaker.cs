@@ -13,7 +13,7 @@ namespace LanguageApp.Classes
         {
 
         }
-
+        // Loops through all word pairs and gets the correct wordRecords in order to create a DisplayObject
         public List<DisplayObject> CreateDisplayObjects(List<WordPair> wordPairs, List<WordRecord> wordRecords)
         {
             List<DisplayObject> displayObjectList = new List<DisplayObject>();
@@ -28,16 +28,16 @@ namespace LanguageApp.Classes
             }
 
             // JUST RETURN A COUPLE OF DISPLAY OBJECTS SO THIS WHOLE APP DOESNT CRASH AND BURN
-            List<DisplayObject> smallList = new List<DisplayObject>();
-            smallList.Add(displayObjectList[0]);
-            smallList.Add(displayObjectList[1]);
-            smallList.Add(displayObjectList[2]);
-            smallList.Add(displayObjectList[3]);
-            smallList.Add(displayObjectList[4]);
-            smallList.Add(displayObjectList[5]);
-            return smallList;
+            //List<DisplayObject> smallList = new List<DisplayObject>();
+            //smallList.Add(displayObjectList[0]);
+            //smallList.Add(displayObjectList[1]);
+            //smallList.Add(displayObjectList[2]);
+            //smallList.Add(displayObjectList[3]);
+            //smallList.Add(displayObjectList[4]);
+            //smallList.Add(displayObjectList[5]);
+            //return smallList;
             
-            //return displayObjectList;
+            return displayObjectList;
         }
 
     }
