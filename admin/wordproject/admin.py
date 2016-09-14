@@ -11,9 +11,25 @@ class WordCustom(admin.StackedInline):
 
 class WordRecordAdmin(admin.ModelAdmin):
     inlines = [WordCustom]
-    list_display = ['word', 'language', 'description', 'dateCreated', 'dateUpdated', 'publish']
+    list_display = ['word', 'language' , 'Translation_Language', 'Translation', 'dateCreated', 'dateUpdated', 'publish']
     search_fields = ('word', 'language')
     list_filter = ('language',)
+	
+    def Translation_Language(self, obj):
+         b = WordPair.objects.filter(original=obj.id).values('translation')
+         c = WordRecord.objects.filter(id=b)
+         if c: 
+             return c[0].language
+         else:
+             return "-"	
+	
+    def Translation(self, obj):
+         b = WordPair.objects.filter(original=obj.id).values('translation')
+         c = WordRecord.objects.filter(id=b)
+         if c: 
+             return c[0].word
+         else:
+             return "-"		 
 
 
 class SoundAdmin(admin.ModelAdmin):
