@@ -13,7 +13,7 @@ namespace LanguageApp.Database
         //Create the api queries for the async call.
         //darvja1
         //jacksct1
-        private string apiAddress = "http://jacksct1.pythonanywhere.com/";
+        private string apiAddress = "http://gardits1.pythonanywhere.com/";
         private string apiwordRecords = "wordRecords/";
 
         public ApiQueryBuilder()
