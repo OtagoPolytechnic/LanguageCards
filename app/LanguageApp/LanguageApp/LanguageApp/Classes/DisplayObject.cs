@@ -8,8 +8,13 @@ namespace LanguageApp.Classes
 {
     public class DisplayObject
     {
+<<<<<<< HEAD
         public int index { get; }
         public string original { get; }
+=======
+        public int index { get; }  // Not needed
+        public string orginal { get; }
+>>>>>>> refs/remotes/origin/UI
         public string translation { get; }
         public string description { get; }
         //public string soundfile { get; }

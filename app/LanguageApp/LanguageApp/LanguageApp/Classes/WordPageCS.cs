@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿using LanguageApp.Classes.Interfaces;
+=======
+﻿using LanguageApp.Classes;
+>>>>>>> refs/remotes/origin/UI
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,43 +12,40 @@ using Xamarin.Forms;
 
 namespace LanguageApp.Classes
 {
-    public class WordPageCS : ContentPage
+    public class WordPageCS : DisplayPage
     {
-        public DisplayObject Display { get; }
-
+        private DisplayObject display;
         public WordPageCS(DisplayObject displayObject)
+            :base(displayObject)
         {
-            this.Display = displayObject;
-
+            this.display = displayObject;
             Padding = new Thickness(0, 0, 0, 0);
-
-            BackgroundColor = Color.Blue;
 
             // Relative layout
             var relativeLayout = new RelativeLayout();
             
-                        
+            // Sound button
             Button soundButton = new Button { };
             soundButton.Image = "ic_volume_up_black_24dp";
             soundButton.BackgroundColor = Color.White;
-
+            // Mountain Banner
             var mountainBanner = new Image { };
             mountainBanner.Source = "ira_mountain.jpg";
-
+            // Left Arrow
             var leftArrow = new Image { };
             leftArrow.Source = "ic_chevron_left_black_24dp.png";
-
+            // Right Arrow
             var rightArrow = new Image { };
             rightArrow.Source = "ic_chevron_right_black_24dp.png";           
-
-            Frame image = new Frame
-            {
-                Content = mountainBanner
-            };
             
+            // SHOULD BE TRANSLATED NOT ORIGINAL . SWITCH WITH OTHER LABEL. TRANSLATED ABOVE 
             Label translatedLabel = new WordLabel
             {
+<<<<<<< HEAD
                 Text = displayObject.original,
+=======
+                Text = displayObject.translation,
+>>>>>>> refs/remotes/origin/UI
                 FontAttributes = FontAttributes.Bold,
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(WordLabel)),
                 HorizontalOptions = LayoutOptions.Center
@@ -52,7 +53,7 @@ namespace LanguageApp.Classes
 
             Label originalLabel = new WordLabel
             {
-                Text = displayObject.translation,
+                Text = displayObject.orginal,
                 FontAttributes = FontAttributes.Bold,
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(WordLabel)),
                 HorizontalOptions = LayoutOptions.Center
@@ -63,20 +64,23 @@ namespace LanguageApp.Classes
                 Color = Color.Black,
                 //VerticalOptions = LayoutOptions.,
                 HeightRequest = 1,
-                WidthRequest = image.Width
+                WidthRequest = mountainBanner.Width
             };
 
+<<<<<<< HEAD
             // Stack layout
             var cardLayout = new StackLayout();
             cardLayout.Children.Add(image);
             cardLayout.Children.Add(translatedLabel);
             cardLayout.Children.Add(originalLabel);
 
+=======
+>>>>>>> refs/remotes/origin/UI
             
             // -- Positioning for controls --
 
             // Mountain image
-            relativeLayout.Children.Add(image, Constraint.Constant(0), Constraint.Constant(0));
+            relativeLayout.Children.Add(mountainBanner, Constraint.Constant(0), Constraint.Constant(0));
             // Translated label
             relativeLayout.Children.Add(translatedLabel,
                 Constraint.RelativeToParent((Parent) =>
@@ -87,8 +91,7 @@ namespace LanguageApp.Classes
                 {
                     return (Parent.Height / 2) - (translatedLabel.Height);
                 }));
-            // Separator
-           
+            // Separator           
             relativeLayout.Children.Add(wordSeparator,
                 Constraint.RelativeToParent((Parent) =>
                 {
