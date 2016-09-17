@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-﻿using LanguageApp.Classes.Interfaces;
-=======
-﻿using LanguageApp.Classes;
->>>>>>> refs/remotes/origin/UI
+
+using LanguageApp.Classes.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,11 +38,7 @@ namespace LanguageApp.Classes
             // SHOULD BE TRANSLATED NOT ORIGINAL . SWITCH WITH OTHER LABEL. TRANSLATED ABOVE 
             Label translatedLabel = new WordLabel
             {
-<<<<<<< HEAD
-                Text = displayObject.original,
-=======
                 Text = displayObject.translation,
->>>>>>> refs/remotes/origin/UI
                 FontAttributes = FontAttributes.Bold,
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(WordLabel)),
                 HorizontalOptions = LayoutOptions.Center
@@ -53,7 +46,7 @@ namespace LanguageApp.Classes
 
             Label originalLabel = new WordLabel
             {
-                Text = displayObject.orginal,
+                Text = displayObject.original,
                 FontAttributes = FontAttributes.Bold,
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(WordLabel)),
                 HorizontalOptions = LayoutOptions.Center
@@ -67,16 +60,12 @@ namespace LanguageApp.Classes
                 WidthRequest = mountainBanner.Width
             };
 
-<<<<<<< HEAD
+
             // Stack layout
             var cardLayout = new StackLayout();
-            cardLayout.Children.Add(image);
+            cardLayout.Children.Add(mountainBanner);
             cardLayout.Children.Add(translatedLabel);
             cardLayout.Children.Add(originalLabel);
-
-=======
->>>>>>> refs/remotes/origin/UI
-            
             // -- Positioning for controls --
 
             // Mountain image
