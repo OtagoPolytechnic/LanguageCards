@@ -1,4 +1,5 @@
-﻿using LanguageApp.Classes;
+
+using LanguageApp.Classes.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,9 +44,9 @@ namespace LanguageApp.Classes
                 HorizontalOptions = LayoutOptions.Center
             };
 
-            Label orginalLabel = new WordLabel
+            Label originalLabel = new WordLabel
             {
-                Text = displayObject.orginal,
+                Text = displayObject.original,
                 FontAttributes = FontAttributes.Bold,
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(WordLabel)),
                 HorizontalOptions = LayoutOptions.Center
@@ -59,7 +60,12 @@ namespace LanguageApp.Classes
                 WidthRequest = mountainBanner.Width
             };
 
-            
+
+            // Stack layout
+            var cardLayout = new StackLayout();
+            cardLayout.Children.Add(mountainBanner);
+            cardLayout.Children.Add(translatedLabel);
+            cardLayout.Children.Add(originalLabel);
             // -- Positioning for controls --
 
             // Mountain image
@@ -93,14 +99,14 @@ namespace LanguageApp.Classes
                     return 1;
                 }));
             // Original label
-            relativeLayout.Children.Add(orginalLabel,
+            relativeLayout.Children.Add(originalLabel,
                 Constraint.RelativeToParent((Parent) =>
                 {
-                    return (Parent.Width / 2) - (orginalLabel.Width / 2);
+                    return (Parent.Width / 2) - (originalLabel.Width / 2);
                 }),
                 Constraint.RelativeToParent((Parent) =>
                 {
-                    return (Parent.Height / 2) + (orginalLabel.Height);
+                    return (Parent.Height / 2) + (originalLabel.Height);
                 }));
             // Left arrow
             relativeLayout.Children.Add(leftArrow,
@@ -133,10 +139,19 @@ namespace LanguageApp.Classes
                     return Parent.Height - (soundButton.Height * 1.5);
                 }));
 
-            // Sound button click handler
+             
+            //
             soundButton.Clicked += (sender, e) =>
             {
-                //soundButton.Image = "ira_mountain.jpg";
+                string soundClip = "SoundFiles/" + displayObject.original + ".mp3";
+
+                try
+                {
+                    DependencyService.Get<IAudioPlayer>().PlayAudioFile(soundClip);
+                }
+                catch (Exception)
+                {
+                }
             };
 
 

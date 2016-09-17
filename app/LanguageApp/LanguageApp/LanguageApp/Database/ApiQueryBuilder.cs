@@ -26,18 +26,7 @@ namespace LanguageApp.Database
             return apiAddress + apiwordRecords;
         }            
             
-
-
-        //  YYYY-MM-DDTHH:MM:SS ///SQLite date format    
-        /// <JsonDateCoverter>
-        /// Covert SQlite string into DateTime so it can then be coverted into json string date format later.
-        /// </summary>
-        /// <param name="date"></param>
-        /// <returns>DateTime</returns>
-        public DateTime StringDateCoverter(String date)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 
 
