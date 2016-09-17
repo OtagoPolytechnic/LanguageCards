@@ -44,13 +44,13 @@ namespace LanguageApp.Classes
             
             Label translatedLabel = new WordLabel
             {
-                Text = displayObject.orginal,
+                Text = displayObject.original,
                 FontAttributes = FontAttributes.Bold,
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(WordLabel)),
                 HorizontalOptions = LayoutOptions.Center
             };
 
-            Label orginalLabel = new WordLabel
+            Label originalLabel = new WordLabel
             {
                 Text = displayObject.translation,
                 FontAttributes = FontAttributes.Bold,
@@ -70,7 +70,7 @@ namespace LanguageApp.Classes
             var cardLayout = new StackLayout();
             cardLayout.Children.Add(image);
             cardLayout.Children.Add(translatedLabel);
-            cardLayout.Children.Add(orginalLabel);
+            cardLayout.Children.Add(originalLabel);
 
             
             // -- Positioning for controls --
@@ -107,14 +107,14 @@ namespace LanguageApp.Classes
                     return 1;
                 }));
             // Original label
-            relativeLayout.Children.Add(orginalLabel,
+            relativeLayout.Children.Add(originalLabel,
                 Constraint.RelativeToParent((Parent) =>
                 {
-                    return (Parent.Width / 2) - (orginalLabel.Width / 2);
+                    return (Parent.Width / 2) - (originalLabel.Width / 2);
                 }),
                 Constraint.RelativeToParent((Parent) =>
                 {
-                    return (Parent.Height / 2) + (orginalLabel.Height);
+                    return (Parent.Height / 2) + (originalLabel.Height);
                 }));
             // Left arrow
             relativeLayout.Children.Add(leftArrow,
@@ -151,9 +151,11 @@ namespace LanguageApp.Classes
             //
             soundButton.Clicked += (sender, e) =>
             {
+                string soundClip = "SoundFiles/" + displayObject.original + ".mp3";
+
                 try
                 {
-                    DependencyService.Get<IAudioPlayer>().PlayAudioFile(displayObject.orginal + ".mp3");
+                    DependencyService.Get<IAudioPlayer>().PlayAudioFile(soundClip);
                 }
                 catch (Exception)
                 {
