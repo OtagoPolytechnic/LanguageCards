@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LanguageApp.Classes;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace LanguageApp.Classes
+namespace LanguageApp.Pages
 {
     public class CardCarouselScreenCS : CarouselPage
     {

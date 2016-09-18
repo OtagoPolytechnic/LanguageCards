@@ -1,4 +1,4 @@
-
+using LanguageApp.Classes;
 using LanguageApp.Classes.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace LanguageApp.Classes
+namespace LanguageApp.Pages
 {
     public class WordPageCS : DisplayPage
     {

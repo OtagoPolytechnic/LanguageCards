@@ -1,4 +1,5 @@
-﻿using LanguageApp.Database;
+﻿using LanguageApp.Classes;
+using LanguageApp.Database;
 using LanguageApp.Database.Models;
 using LanguageApp.Database.Repositorys;
 using System;
@@ -9,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace LanguageApp.Classes
+namespace LanguageApp.Pages
 {
     public class SplashScreenCS : ContentPage
     {
