@@ -39,17 +39,16 @@
     <Compile Include="AppAsyncTesting.cs" />
     <Compile Include="AppDatabaseTesting.cs" />
     <Compile Include="Classes\AppManager.cs" />
-    <Compile Include="Classes\CardCarouselPageCS.cs" />
+    <Compile Include="Pages\CardCarouselPageCS.cs" />
     <Compile Include="Classes\CarouselWordsPage.cs" />
     <Compile Include="Classes\DisplayObject.cs" />
     <Compile Include="Classes\DisplayObjectMaker.cs" />
-
     <Compile Include="Classes\Interfaces\IAudioPlayer.cs" />
     <Compile Include="Classes\DisplayPage.cs" />
     <Compile Include="Classes\MainPageCS.cs" />
-    <Compile Include="Classes\SplashPageCS.cs" />
+    <Compile Include="Pages\SplashPageCS.cs" />
     <Compile Include="Classes\WordLabel.cs" />
-    <Compile Include="Classes\WordPageCS.cs" />
+    <Compile Include="Pages\WordPageCS.cs" />
     <Compile Include="Database\ApiQueryBuilder.cs" />
     <Compile Include="Database\DatabaseManager.cs" />
     <Compile Include="Database\ExternalApi.cs" />
@@ -64,7 +63,6 @@
     <Compile Include="Database\Models\WordPair.cs" />
     <Compile Include="Database\Models\WordRecord.cs" />
     <Compile Include="Database\DBGeneric.cs" />
-    <Compile Include="MainPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WordScreen.cs" />
   </ItemGroup>
@@ -141,7 +139,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-  <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
     <Error Condition="!Exists('..\..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets'))" />
   </Target>
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

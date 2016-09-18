@@ -1,4 +1,4 @@
-
+using LanguageApp.Classes;
 using LanguageApp.Classes.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace LanguageApp.Classes
+namespace LanguageApp.Pages
 {
     public class WordPageCS : DisplayPage
     {
@@ -52,13 +52,13 @@ namespace LanguageApp.Classes
                 HorizontalOptions = LayoutOptions.Center
             };
 
-            var wordSeparator = new BoxView
-            {
-                Color = Color.Black,
-                //VerticalOptions = LayoutOptions.,
-                HeightRequest = 1,
-                WidthRequest = mountainBanner.Width
-            };
+            //var wordSeparator = new BoxView
+            //{
+            //    Color = Color.Black,
+            //    //VerticalOptions = LayoutOptions.,
+            //    HeightRequest = 1,
+            //    WidthRequest = mountainBanner.Width
+            //};
 
 
             // Stack layout
@@ -81,23 +81,23 @@ namespace LanguageApp.Classes
                     return (Parent.Height / 2) - (translatedLabel.Height);
                 }));
             // Separator           
-            relativeLayout.Children.Add(wordSeparator,
-                Constraint.RelativeToParent((Parent) =>
-                {
-                    return leftArrow.Width;
-                }),
-                Constraint.RelativeToParent((Parent) =>
-                {
-                    return (Parent.Height / 2) + (leftArrow.Height / 2);
-                }),
-                Constraint.RelativeToParent((Parent) =>
-                {
-                    return Parent.Width - (leftArrow.Width + rightArrow.Width);
-                }),
-                Constraint.RelativeToParent((Parent) =>
-                {
-                    return 1;
-                }));
+            //relativeLayout.Children.Add(wordSeparator,
+            //    Constraint.RelativeToParent((Parent) =>
+            //    {
+            //        return leftArrow.Width;
+            //    }),
+            //    Constraint.RelativeToParent((Parent) =>
+            //    {
+            //        return (Parent.Height / 2) + (leftArrow.Height / 2);
+            //    }),
+            //    Constraint.RelativeToParent((Parent) =>
+            //    {
+            //        return Parent.Width - (leftArrow.Width + rightArrow.Width);
+            //    }),
+            //    Constraint.RelativeToParent((Parent) =>
+            //    {
+            //        return 1;
+            //    }));
             // Original label
             relativeLayout.Children.Add(originalLabel,
                 Constraint.RelativeToParent((Parent) =>
