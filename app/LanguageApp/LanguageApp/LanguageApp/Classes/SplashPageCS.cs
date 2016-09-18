@@ -13,60 +13,44 @@ namespace LanguageApp.Classes
 {
     public class SplashScreenCS : ContentPage
     {
-        private AppManager appManager;
+        // Not used in beta product
+        //private AppManager appManager;
 
         public SplashScreenCS()
         {
-            //BackgroundImage = "ira_on_black.jpg";
+            BackgroundImage = "ira_on_black.jpg";
 
             //appManager = new AppManager();
 
-            //Task.Run(() => AsyncCall()).Wait();        
+            Task.Run(() => AsyncCall()).Wait();
 
-            Button button = new Button { Text = "Splash screen placeholder" };
-
-
-            button.Clicked += async (sender, e) =>
-             {
-                 DatabaseManager dbm = new DatabaseManager();
-                 MobileDB mobliedb = new MobileDB();
-                 DisplayObjectMaker displayObjectMaker = new DisplayObjectMaker();
-                 appManager = new AppManager();
-                 await dbm.CallApi();
-                 List<WordPair> wordPairs = await mobliedb.GetAllWordPairs();
-                 List<WordRecord> wordRecords = await mobliedb.GetAllWordRecords();
-
-                 List<WordPageCS> wordPageList = new List<WordPageCS>();
-
-                 List<DisplayObject> displayObjects = displayObjectMaker.CreateDisplayObjects(wordPairs, wordRecords);
-
-                 await Navigation.PushModalAsync(new MainPageCS(appManager, displayObjects));
-
-             };
-
-            var stackLayout = new StackLayout
-            {
-                Children = { button },
-                Padding = new Thickness(0, 200, 0 , 0)
-            };
-            this.Content = stackLayout;
         }
 
         public async Task AsyncCall()
         {
+            // 
             DatabaseManager dbm = new DatabaseManager();
+            // Phone DB
             MobileDB mobliedb = new MobileDB();
+            // Used to create display objects
             DisplayObjectMaker displayObjectMaker = new DisplayObjectMaker();
+            // Tries to hit the backend to find new words
+            try
+            {
+                await dbm.CallApi();
+            }
+            catch (Exception)
+            {
+                //throw;
+            }
 
-            await dbm.CallApi();
+            // Get all word pairs & records to pass into displayObjectMaker
             List<WordPair> wordPairs = await mobliedb.GetAllWordPairs();
             List<WordRecord> wordRecords = await mobliedb.GetAllWordRecords();
-            
-            List<WordPageCS> wordPageList = new List<WordPageCS>();
 
             List<DisplayObject> displayObjects = displayObjectMaker.CreateDisplayObjects(wordPairs, wordRecords);
-            
-            await Navigation.PushModalAsync(new MainPageCS(appManager, displayObjects));
+            // Goes to next page
+            await Navigation.PushModalAsync(new CardCarouselScreenCS(displayObjects));
         }
 
 
