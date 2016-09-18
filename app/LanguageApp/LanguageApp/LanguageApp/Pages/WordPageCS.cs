@@ -39,6 +39,7 @@ namespace LanguageApp.Pages
             Label translatedLabel = new WordLabel
             {
                 Text = displayObject.translation,
+                TextColor = Color.Black,
                 FontAttributes = FontAttributes.Bold,
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(WordLabel)),
                 HorizontalOptions = LayoutOptions.Center
@@ -47,6 +48,7 @@ namespace LanguageApp.Pages
             Label originalLabel = new WordLabel
             {
                 Text = displayObject.original,
+                TextColor = Color.Black,
                 FontAttributes = FontAttributes.Bold,
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(WordLabel)),
                 HorizontalOptions = LayoutOptions.Center
