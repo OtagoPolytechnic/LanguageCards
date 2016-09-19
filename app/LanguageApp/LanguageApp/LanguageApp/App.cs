@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LanguageApp.Classes;
+using LanguageApp.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +14,7 @@ namespace LanguageApp
         public App()
         {
             // The root page of your application
-            MainPage = new MainPage();
+            MainPage = new SplashScreenCS();
             
         }
 

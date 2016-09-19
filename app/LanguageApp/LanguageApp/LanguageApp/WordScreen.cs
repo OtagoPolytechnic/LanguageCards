@@ -8,9 +8,9 @@ using Xamarin.Forms;
 
 namespace LanguageApp
 {
-    public class WordScreen : ContentPage
+    public class WordPage : ContentPage
     {
-        public WordScreen(WordRecord word)
+        public WordPage(WordRecord word)
         {
 
 

@@ -11,8 +11,9 @@ namespace LanguageApp.Database
     {
 
         //Create the api queries for the async call.
-
-        private string apiAddress = "http://darvja1.pythonanywhere.com/";
+        //darvja1
+        //jacksct1
+        private string apiAddress = "http://gardits1.pythonanywhere.com/";
         private string apiwordRecords = "wordRecords/";
 
         public ApiQueryBuilder()
@@ -25,18 +26,7 @@ namespace LanguageApp.Database
             return apiAddress + apiwordRecords;
         }            
             
-
-
-        //  YYYY-MM-DDTHH:MM:SS ///SQLite date format    
-        /// <JsonDateCoverter>
-        /// Covert SQlite string into DateTime so it can then be coverted into json string date format later.
-        /// </summary>
-        /// <param name="date"></param>
-        /// <returns>DateTime</returns>
-        public DateTime StringDateCoverter(String date)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 
 
