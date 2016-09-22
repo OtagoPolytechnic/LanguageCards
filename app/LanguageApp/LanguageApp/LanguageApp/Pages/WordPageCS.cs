@@ -81,6 +81,11 @@ namespace LanguageApp.Pages
                 HorizontalOptions = LayoutOptions.Fill,
                 Content = translatedLabel
             };
+            ContentView sound = new ContentView
+            {
+                HorizontalOptions = LayoutOptions.Fill,
+                Content = soundButton
+            };
 
             // Mountain image
             relativeLayout.Children.Add(mountainBanner, Constraint.Constant(0), Constraint.Constant(0));
@@ -114,9 +119,12 @@ namespace LanguageApp.Pages
             //    Constraint.RelativeToView(wordSeparator, (Parent, Sibling) => Sibling.X + ((Sibling.Width / 2) - (translatedLabel.Width / 2))),
             //    Constraint.RelativeToView(wordSeparator, (Parent, Sibling) => Sibling.Y + (translatedLabel.Height * 0.5)));            
             // Sound Image / button
-            relativeLayout.Children.Add(soundButton,
-                Constraint.RelativeToParent((Parent) => (Parent.Width / 2) - (soundButton.Width / 2)),
-                Constraint.RelativeToParent((Parent) => Parent.Height - (soundButton.Height * 1.5)));
+          
+            relativeLayout.Children.Add(sound,
+                Constraint.RelativeToView(leftArrow, (Parent, Sibling) => Sibling.Width),
+                Constraint.RelativeToView(leftArrow, (Parent, Sibling) => Sibling.Y * 1.5),
+                Constraint.RelativeToView(leftArrow, (Parent, Sibling) => Parent.Width - (Sibling.Width * 2)));
+            //Constraint.RelativeToView(leftArrow, (Parent, Sibling) => Sibling.Y * 2 - soundButton.Height));
 
 
             //
