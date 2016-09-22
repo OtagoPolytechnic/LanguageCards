@@ -12,6 +12,8 @@ namespace LanguageApp.Pages
     public class WordPageCS : DisplayPage
     {
         private DisplayObject display;
+        private double lineWidth;
+
         public WordPageCS(DisplayObject displayObject)
             :base(displayObject)
         {
@@ -19,7 +21,11 @@ namespace LanguageApp.Pages
             Padding = new Thickness(0, 0, 0, 0);
 
             // Relative layout
-            var relativeLayout = new RelativeLayout();
+            var r = new RelativeLayout()
+            {
+                //HeightRequest = 300
+            };
+            var layout = new AbsoluteLayout();
             
             // Sound button
             Button soundButton = new Button { };
@@ -28,119 +34,53 @@ namespace LanguageApp.Pages
             // Mountain Banner
             var mountainBanner = new Image { };
             mountainBanner.Source = "ira_mountain.jpg";
+            lineWidth = mountainBanner.Width;
             // Left Arrow
             var leftArrow = new Image { };
             leftArrow.Source = "ic_chevron_left_black_24dp.png";
             // Right Arrow
             var rightArrow = new Image { };
-            rightArrow.Source = "ic_chevron_right_black_24dp.png";           
+            rightArrow.Source = "ic_chevron_right_black_24dp.png";
             
-            // SHOULD BE TRANSLATED NOT ORIGINAL . SWITCH WITH OTHER LABEL. TRANSLATED ABOVE 
-            Label translatedLabel = new WordLabel
-            {
-                Text = displayObject.translation,
-                TextColor = Color.Black,
-                FontAttributes = FontAttributes.Bold,
-                FontSize = Device.GetNamedSize(NamedSize.Large, typeof(WordLabel)),
-                HorizontalOptions = LayoutOptions.Center
-            };
-
+            // Moari word
             Label originalLabel = new WordLabel
             {
                 Text = displayObject.original,
                 TextColor = Color.Black,
                 FontAttributes = FontAttributes.Bold,
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(WordLabel)),
-                HorizontalOptions = LayoutOptions.Center
+                HorizontalTextAlignment = TextAlignment.Center
+            };
+            // English word
+            Label translatedLabel = new WordLabel
+            {
+                Text = displayObject.translation,
+                TextColor = Color.Black,
+                FontAttributes = FontAttributes.Bold,
+                FontSize = Device.GetNamedSize(NamedSize.Large, typeof(WordLabel)),
+                HorizontalTextAlignment = TextAlignment.Center
             };
 
-            //var wordSeparator = new BoxView
-            //{
-            //    Color = Color.Black,
-            //    //VerticalOptions = LayoutOptions.,
-            //    HeightRequest = 1,
-            //    WidthRequest = mountainBanner.Width
-            //};
+            var wordSeparator = new BoxView
+            {
+                Color = Color.Black,
+                HeightRequest = 1,
+                WidthRequest = Width
+            };
 
+            r.Children.Add(leftArrow, Constraint.Constant(0), Constraint.Constant(0));
+            r.Children.Add(wordSeparator, Constraint.RelativeToView(leftArrow, (Parent, Sibling) => Sibling.Width), Constraint.RelativeToView(leftArrow, (Parent, Sibling) => Sibling.Height / 2), Constraint.RelativeToView(leftArrow, (Parent, Sibling) => Parent.Width - (Sibling.Width * 2)));
+            r.Children.Add(rightArrow, Constraint.RelativeToView(wordSeparator, (Parent, Sibling) => Sibling.X + Sibling.Width), Constraint.Constant(0));
 
             // Stack layout
             var cardLayout = new StackLayout();
             cardLayout.Children.Add(mountainBanner);
-            cardLayout.Children.Add(translatedLabel);
             cardLayout.Children.Add(originalLabel);
-            // -- Positioning for controls --
-
-            // Mountain image
-            relativeLayout.Children.Add(mountainBanner, Constraint.Constant(0), Constraint.Constant(0));
-            // Translated label
-            relativeLayout.Children.Add(translatedLabel,
-                Constraint.RelativeToParent((Parent) =>
-                {
-                    return (Parent.Width / 2) - (translatedLabel.Width / 2);
-                }),
-                Constraint.RelativeToParent((Parent) =>
-                {
-                    return (Parent.Height / 2) - (translatedLabel.Height);
-                }));
-            // Separator           
-            //relativeLayout.Children.Add(wordSeparator,
-            //    Constraint.RelativeToParent((Parent) =>
-            //    {
-            //        return leftArrow.Width;
-            //    }),
-            //    Constraint.RelativeToParent((Parent) =>
-            //    {
-            //        return (Parent.Height / 2) + (leftArrow.Height / 2);
-            //    }),
-            //    Constraint.RelativeToParent((Parent) =>
-            //    {
-            //        return Parent.Width - (leftArrow.Width + rightArrow.Width);
-            //    }),
-            //    Constraint.RelativeToParent((Parent) =>
-            //    {
-            //        return 1;
-            //    }));
-            // Original label
-            relativeLayout.Children.Add(originalLabel,
-                Constraint.RelativeToParent((Parent) =>
-                {
-                    return (Parent.Width / 2) - (originalLabel.Width / 2);
-                }),
-                Constraint.RelativeToParent((Parent) =>
-                {
-                    return (Parent.Height / 2) + (originalLabel.Height);
-                }));
-            // Left arrow
-            relativeLayout.Children.Add(leftArrow,
-                Constraint.RelativeToParent((Parent) =>
-                {
-                    return 0;
-                }),
-                Constraint.RelativeToParent((Parent) =>
-                {
-                    return (Parent.Height / 2);
-                }));
-            // Right arrow
-            relativeLayout.Children.Add(rightArrow,
-                Constraint.RelativeToParent((Parent) =>
-                {
-                    return (Parent.Width - rightArrow.Width);
-                }),
-                Constraint.RelativeToParent((Parent) =>
-                {
-                    return (Parent.Height / 2);
-                }));
-            // Sound Image / button
-            relativeLayout.Children.Add(soundButton,
-                Constraint.RelativeToParent((Parent) =>
-                {
-                    return (Parent.Width / 2) - (soundButton.Width / 2);
-                }),
-                Constraint.RelativeToParent((Parent) =>
-                {
-                    return Parent.Height - (soundButton.Height * 1.5);
-                }));
-
+            cardLayout.Children.Add(r);
+            cardLayout.Children.Add(translatedLabel);
+            cardLayout.Children.Add(soundButton);
+            
+            
              
             //
             soundButton.Clicked += (sender, e) =>
@@ -158,7 +98,7 @@ namespace LanguageApp.Pages
 
 
             this.Content = new Frame {
-            Content = relativeLayout,
+            Content = cardLayout,
             OutlineColor = Color.Lime,
             HasShadow = true,
             BackgroundColor = Color.White, Opacity = 1
