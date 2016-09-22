@@ -446,9 +446,6 @@
     <AndroidAsset Include="Assets\SoundFiles\Utanga.mp3" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\SoundFiles\Ahua.mp3" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidAsset Include="Assets\SoundFiles\Aio.mp3" />
   </ItemGroup>
   <ItemGroup>

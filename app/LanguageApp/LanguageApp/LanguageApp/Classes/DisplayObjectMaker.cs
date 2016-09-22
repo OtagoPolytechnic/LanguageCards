@@ -17,26 +17,15 @@ namespace LanguageApp.Classes
         public List<DisplayObject> CreateDisplayObjects(List<WordPair> wordPairs, List<WordRecord> wordRecords)
         {
             List<DisplayObject> displayObjectList = new List<DisplayObject>();
-            int index = 0;
             foreach (WordPair wp in wordPairs)
             {
+                int pk = wordRecords.Find(word => word.id == wp.original).id;
                 string original = wordRecords.Find(word => word.id == wp.original).word;
                 string translation = wordRecords.Find(word => word.id == wp.translation).word;
                 string description = wordRecords.Find(word => word.id == wp.original).description;
-                displayObjectList.Add(new DisplayObject(index, original, translation, description));
-                index++;
+                displayObjectList.Add(new DisplayObject(pk, original, translation, description));
             }
-
-            // JUST RETURN A COUPLE OF DISPLAY OBJECTS SO THIS WHOLE APP DOESNT CRASH AND BURN
-            //List<DisplayObject> smallList = new List<DisplayObject>();
-            //smallList.Add(displayObjectList[0]);
-            //smallList.Add(displayObjectList[1]);
-            //smallList.Add(displayObjectList[2]);
-            //smallList.Add(displayObjectList[3]);
-            //smallList.Add(displayObjectList[4]);
-            //smallList.Add(displayObjectList[5]);
-            //return smallList;
-            
+                        
             return displayObjectList;
         }
 
