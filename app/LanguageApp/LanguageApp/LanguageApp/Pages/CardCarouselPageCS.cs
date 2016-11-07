@@ -17,7 +17,7 @@ namespace LanguageApp.Pages
         private int current;
         private int next;
 
-        ContentPage C; // USED FOR DEBUGING
+        //ContentPage C; // debug purposes
 
         private bool load;
 
@@ -28,7 +28,7 @@ namespace LanguageApp.Pages
             next = 1;
 
             load = false;
-            C = CurrentPage;
+            //C = CurrentPage;  // debug purposes
 
             this.displayObjects = displayObjects;            
             
@@ -38,62 +38,55 @@ namespace LanguageApp.Pages
 
             load = true;
         }
-        // When ever a swipe occurs
+        // Whenever a swipe occurs
         protected override void OnCurrentPageChanged()
         {
             base.OnCurrentPageChanged();
-            C = CurrentPage; // TESTING
+            //C = CurrentPage; // debug purposes
             if (load)
             {                
                 if (CurrentPage.Equals(Children[Children.Count - 1]))
                 {
-                    SwipeLeft();
+                    SwipeLeft();    // Call to deal with a left swipe
                 }
                 else
                 {
-                    SwipeRight();
+                    SwipeRight();   // Call to deal with a right swipe
                 }
+                // Garbage collection to remove any objects from memory that don't have a pointer associated to it
                 GC.Collect();
             }            
         }
-
+        // Method to be called whenever a left swipe has occured
         public void SwipeLeft()
         {
             previous += 1;
             current += 1;
             next += 1;
-            if (current != displayObjects.Count - 1)//(next <= displayObjects.Count - 1)
+            if (current != displayObjects.Count - 1)
             {
-                Children.Add((new WordPageCS(displayObjects[next])));                
+                Children.Add((new WordPageCS(displayObjects[next])));       // Adding a new child in the next position           
             }
             if (previous > 0)
             {
-                Children.RemoveAt(0);
+                Children.RemoveAt(0);   // Removes first child
             }
         }
-
+        // Method to be called whenever a right swipe has occured
         public void SwipeRight()
         {
             previous -= 1;
             current -= 1;
             next -= 1;
-            if (current != 0)//(previous > 0)
+            if (current != 0)
             {
-                //Children.Add(new WordPageCS(displayObjects[previous]));   // NOT ADDING TO START . ADDING TO END     
-                //CurrentPage = Children[1]; // Do I need to move CurrentPage before inserting at 0  ?  Would cause event to fire again. use flag.
-                Children.Insert(0, new WordPageCS(displayObjects[previous]));
+                Children.Insert(0, new WordPageCS(displayObjects[previous]));   // Adding a new child in the prevouis position 
             }
             if (next < displayObjects.Count - 1)
             {
-                Children.RemoveAt(Children.Count - 1);
+                Children.RemoveAt(Children.Count - 1);  // Removes last child
             }
         }
-
-        //protected override void OnChildRemoved()
-        //{
-        //    base.OnChildRemoved();
-        //}
-
 
 
     }
